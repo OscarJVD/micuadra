@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="row">
+        <div class="col s6">
+            <div class="card white" style="margin-top: 8%;">
+                <div class="card-content white-text">
+                    <article class="card-title black-text center">
+                        <b>Nueva Tarea</b>
+                    </article>
+                    <form #taskForm="ngForm" (ngSubmit)="addTask(taskForm)">
+                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="taskService.selectedTask._id">
+
+                        <div class="row">
+                            <div class="input-fields col s12">
+                                <label for="title" class="left">Título</label>
+                                <input class="validate" type="text" id="title" name="title" #title="ngModel"
+                                    [(ngModel)]="taskService.selectedTask.title"
+                                    placeholder="Ingrese el título de la tarea">
+                            </div>
+
+                            <div class="input-fields col s12">
+                                <label for="byWhen" class="left">Fecha de entrega</label>
+                                <input class="validate" type="datetime-local" id="byWhen" name="byWhen"
+                                    #byWhen="ngModel" [(ngModel)]="taskService.selectedTask.byWhen">
+                            </div>
+
+                            <div class="input-fields col s12">
+                                <label for="assignmentDate" class="left">Fecha de asignación</label>
+                            </div>
+                            <div class="d-flex input-fields col s12">
+                                <input class="validate" id="assignmentDate" type="datetime-local" name="assignmentDate"
+                                    #assignmentDate="ngModel" [(ngModel)]="taskService.selectedTask.assignmentDate">
+                                <!-- <label>
+                                    <input type="checkbox" name="todayCheck" class="filled-in" (change)="fillAssignmentDate(todayCheck)"/>
+                                    <span class="text-sm pl-25">Hoy</span>
+                                </label> -->
+                            </div>
+
+                            <div class="input-fields col s12">
+                                <label for="subject" class="left">Materia</label>
+
+                                <input class="validate" id="subject" type="text" name="subject" #subject="ngModel"
+                                    [(ngModel)]="taskService.selectedTask.subject"
+                                    placeholder="Ingrese el nombre de la materia">
+                            </div>
+
+                            <div class="input-fields col s12">
+                                <label for="topic" class="left">Tema</label>
+
+                                <input class="validate" type="text" id="topic" name="topic" #topic="ngModel"
+                                    [(ngModel)]="taskService.selectedTask.topic" placeholder="Ingrese el tema a tratar">
+                            </div>
+
+                            <div class="input-fields col s12">
+                                <label for="description" class="left">Pasos para lograrlo</label>
+
+                                <textarea data-length="120" id="description" name="description" #description="ngModel"
+                                    [(ngModel)]="taskService.selectedTask.description"
+                                    placeholder="Ingrese los pasos para lograrlo" id="textarea1"
+                                    class="materialize-textarea validate"></textarea>
+                            </div>
+
+                            <div class="card-action">
+                                <div class="input-field col s6">
+                                    <button (click)="resetForm(taskForm)" style="width: 100%;"
+                                        class="btn left white-text grey darken-3">
+                                        Limpiar
+                                    </button>
+                                </div>
+                                <div class="input-field col s6">
+                                    <button style="width: 100%;" class="btn right white-text blue darken-3">
+                                        Guardar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12">
+            <div class="card white">
+                <div class="card-content white-text">
+                    <span class="card-title black-text">
+                        <b>Lista de Tareas</b>
+                    </span>
+                    <div class="row">
+                        <div class="col s12" style="overflow: auto;">
+                            <!-- (keyup)="getTasksByTitle() -->
+                            <input type="text" id="nameField" name="nameField"
+                                placeholder="Buscar por título">
+                            <table class="black-text">
+                                <thead>
+                                    <th>Título</th>
+                                    <th>Fecha de entrega</th>
+                                    <th>Fecha de asignación</th>
+                                    <th>Estado</th>
+                                    <th>Materia</th>
+                                    <th>Tema</th>
+                                    <th>Pasos para lograrlo</th>
+                                    <th>Operación</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let task of taskService.task">
+                                        <td>{{ task.title }}</td>
+                                        <td>{{ task.byWhen }}</td>
+                                        <td>{{ task.assignmentDate }}</td>
+                                        <td *ngIf="task.status == 1">{{ 'Pendiente' }}</td>
+                                        <td *ngIf="task.status == 2">{{ 'Realizada' }}</td>
+                                        <td>{{ task.subject }}</td>
+                                        <td>{{ task.topic }}</td>
+                                        <td>{{ task.description }}</td>
+                                        <td>
+                                            <a href="#" style="margin-left: 10px; margin-right: 10px;">
+                                                <i class="material-icons amber-text">edit</i>
+                                            </a>
+                                            <a href="#" style="margin-left: 10px; margin-right: 10px;">
+                                                <i class="material-icons red-text">delete</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

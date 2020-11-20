@@ -1,0 +1,30 @@
+{
+  "name": "solutasks",
+  "version": "1.0.0",
+  "description": "app tareas mean",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/ojvargas30/solutasks.git"
+  },
+  "author": "Oscar Javier Vargas Díaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/ojvargas30/solutasks/issues"
+  },
+  "homepage": "https://gitlab.com/ojvargas30/solutasks#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.15",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
+    "var_dump": "^1.0.5"
+  }
+}

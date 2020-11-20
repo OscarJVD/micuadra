@@ -31,7 +31,7 @@ export class TaskService {
 
   putStatusTask(task: Task) // Actualizar estado de la tarea(SoftDelete)
   {
-    return this.http.put(this.URL_API + '/' + task._id + '/status', task);
+      return this.http.put(this.URL_API + '/' + task._id + '/' + 'status', task);
   }
 
   deleteTask(_id: string) // Eliminar tarea

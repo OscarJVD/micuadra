@@ -19,6 +19,7 @@ export class TasksComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTasks();
+    // this.time1();
   }
 
   resetForm(form?: NgForm){
@@ -29,23 +30,78 @@ export class TasksComponent implements OnInit {
     this.taskService.getTasks().subscribe(res => this.taskService.task = res as Task[])
   }
 
+  // time1(date = new Date()) {
+  //   let
+  //       h = date.getHours(),
+  //       m = date.getMinutes();
+
+  //   return h + ':' + ("0" + m).slice(-2) + (h > 12 ? 'PM' : 'AM');
+  // }
+
   addTask(form: NgForm)
   {
-    if(form.value._id){
-
+    if(form.value._id){ // Actualizar tarea si llega solo el id
+      this.taskService.putTask(form.value).subscribe(res => {
+        this.resetForm(form);
+        M.toast({html: 'Tarea actualizada satisfactoriamente'})
+        this.getTasks(); // Vuelve y muestra la tabla con la actualización
+      })
     }else{
       delete form.value._id;
+    // //   // console.log(form.value.byWhen);
+    //     let byWhenBetter = form.value.byWhen.split("T");
+    // // console.log(byWhenBetter);
+    // byWhenBetter = byWhenBetter[0] + ' ' + byWhenBetter[1].substring(0,8);
+    // byWhenBetter = new Date(byWhenBetter);
+    // // console.log(byWhenBetter);
+
+    // let
+    //     h = byWhenBetter.getHours(),
+    //     m = byWhenBetter.getMinutes();
+
+    //     form.value.byWhen = byWhenBetter.toLocaleDateString("es-ES", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) + ' ' + (h + ':' + ("0" + m).slice(-2) + (h > 12 ? 'PM' : 'AM'));
+    //     console.log(form.value.byWhen);
+      // // return;
       this.taskService.postTask(form.value).subscribe(res => {
         this.resetForm(form);
         M.toast({ html: 'Tarea guardada con exito' })
-        this.getTasks();
+        this.getTasks(); // Vuelve y muestra la tabla
       })
     }
+  }
+
+  // Buscador
+  getTasksByTitle(){ // Con esto se hace lo de abajo
+    var value = (<HTMLInputElement>document.getElementById("search")).value;
+
+    if(value != ''){
+      var key_to_find = value;
+      var filtered_e = this.taskService.task.filter(el => {
+        return el.title.toUpperCase().includes(key_to_find.toUpperCase());
+      })
+      this.taskService.task = filtered_e as Task[];
+    }else this.getTasks();
+
+    // console.log(value);
   }
 
   // fillAssignmentDate(todayCheck: NgForm)
   // {
   //   console.log(todayCheck);
   // }
+
+  updateTask(task: Task){
+    this.taskService.selectedTask = task; // cargar la tarea en el formulario para poder editar
+  }
+
+  updateStatusTask(task: Task, form: NgForm){
+    console.log(task);
+    console.log(typeof task.status);
+    this.taskService.putStatusTask(task).subscribe(res => {
+      this.resetForm(form);
+      M.toast({ html: 'Tarea archivada con exito' })
+      this.getTasks(); // Vuelve y muestra la tabla
+    })
+  }
 
 }

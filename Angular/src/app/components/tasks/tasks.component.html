@@ -61,13 +61,13 @@
 
                             <div class="card-action">
                                 <div class="input-field col s6">
-                                    <button (click)="resetForm(taskForm)" style="width: 100%;"
-                                        class="btn left white-text grey darken-3">
+                                    <button (click)="resetForm(taskForm)" type="button" style="width: 100%;"
+                                        class="btn left white-text grey darken-3 waves-effect waves-light btn-small">
                                         Limpiar
                                     </button>
                                 </div>
                                 <div class="input-field col s6">
-                                    <button style="width: 100%;" class="btn right white-text blue darken-3">
+                                    <button style="width: 100%;" class="btn right white-text blue darken-3 waves-effect waves-light btn-small">
                                         Guardar
                                     </button>
                                 </div>
@@ -86,10 +86,9 @@
                     </span>
                     <div class="row">
                         <div class="col s12" style="overflow: auto;">
-                            <!-- (keyup)="getTasksByTitle() -->
-                            <input type="text" id="nameField" name="nameField"
-                                placeholder="Buscar por título">
-                            <table class="black-text">
+                            <input type="text" id="search" name="search"
+                                placeholder="Buscar por título" (keyup)="getTasksByTitle()">
+                            <table class="black-text responsive-table">
                                 <thead>
                                     <th>Título</th>
                                     <th>Fecha de entrega</th>
@@ -105,18 +104,31 @@
                                         <td>{{ task.title }}</td>
                                         <td>{{ task.byWhen }}</td>
                                         <td>{{ task.assignmentDate }}</td>
-                                        <td *ngIf="task.status == 1">{{ 'Pendiente' }}</td>
+                                        <td *ngIf="task.status == 1">
+                                            <span class="new badge red">
+                                                {{ 'Pendiente' }}
+                                            </span>
+                                        </td>
                                         <td *ngIf="task.status == 2">{{ 'Realizada' }}</td>
                                         <td>{{ task.subject }}</td>
                                         <td>{{ task.topic }}</td>
                                         <td>{{ task.description }}</td>
                                         <td>
-                                            <a href="#" style="margin-left: 10px; margin-right: 10px;">
-                                                <i class="material-icons amber-text">edit</i>
+                                            <a href="#" class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
+                                             style="margin-left: 10px; margin-right: 10px;"
+                                            (click)="updateTask(task)">
+                                                <i class="material-icons white-text">edit</i>
                                             </a>
-                                            <a href="#" style="margin-left: 10px; margin-right: 10px;">
-                                                <i class="material-icons red-text">delete</i>
-                                            </a>
+                                            <button type="button" class="btn-floating btn-large waves-effect waves-light btn-small grey darken-4"
+                                             style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                            (click)="updateStatusTask(task,taskForm)">
+                                                <i class="material-icons white-text">archive</i>
+                                            </button>
+                                            <button type="button" class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
+                                             style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                            (click)="updateStatusTask(task,taskForm)">
+                                                <i class="material-icons white-text">delete</i>
+                                            </button>
                                         </td>
                                     </tr>
                                 </tbody>

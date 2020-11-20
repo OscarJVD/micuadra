@@ -12,6 +12,7 @@ app.set('port', process.env.PORT || 3000); // Asignamos un puerto para ejecutar 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors({ origin: 'http://localhost:4200' }));
+
 // Routes
 app.use('/api/tasks', require('./routes/task.routes')) // api... es el nombre de la ruta
 

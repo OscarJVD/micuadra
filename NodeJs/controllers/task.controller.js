@@ -57,7 +57,7 @@ taskCtrl.putStatusTask = async (req, res) => {
     const { id } = req.params;
 
     const task = {
-        status: req.body.status
+        status: (req.body.status == 1) ? 2 : 1
     };
 
     await Task.findByIdAndUpdate(id, { $set: task }, { new: true });

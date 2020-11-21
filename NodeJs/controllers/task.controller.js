@@ -9,7 +9,7 @@ const taskCtrl = {}; // controlador de tarea
 // Función para obtener todas las tareas activas
 taskCtrl.getTasks = async (req, res) => { // Aqui falta filtrar donde el status sea 1
     // const tasks = await Task.find(); // Esto trae todas
-    const tasks = await Task.find(
+    const tasks = await Task.find( // Esto trae todas las tareas con estado 1
         {status: 1}
     );
     res.json(tasks);
@@ -51,7 +51,7 @@ taskCtrl.putTask = async (req, res) => {
     res.json({ "status": "Task Updated" });
 }
 
-// Cambiar estado de la tarea (SoftDelete)
+// Cambiar estado de la tarea -> Archivarla
 taskCtrl.putStatusTask = async (req, res) => {
 
     const { id } = req.params;
@@ -62,6 +62,19 @@ taskCtrl.putStatusTask = async (req, res) => {
 
     await Task.findByIdAndUpdate(id, { $set: task }, { new: true });
     res.json({ "status": "Status Task Updated" });
+}
+
+// Cambiar estado de la tarea (SoftDelete)
+taskCtrl.softDeleteTask = async (req, res) => {
+
+    const { id } = req.params;
+
+    const task = {
+        status: 3
+    };
+
+    await Task.findByIdAndUpdate(id, { $set: task }, { new: true });
+    res.json({ "status": "Status Task Updated (SoftDelete)" });
 }
 
 // Eliminar una tarea

@@ -29,9 +29,14 @@ export class TaskService {
     return this.http.put(this.URL_API + '/' + task._id, task);
   }
 
-  putStatusTask(task: Task) // Actualizar estado de la tarea(SoftDelete)
+  putStatusTask(task: Task) // Archivar la tarea -> actualizarle el estado
   {
       return this.http.put(this.URL_API + '/' + task._id + '/' + 'status', task);
+  }
+
+  softDeleteTask(task: Task) // Actualizar estado de la tarea(SoftDelete)
+  {
+      return this.http.put(this.URL_API + '/' + task._id + '/' + 'softdelete', task);
   }
 
   deleteTask(_id: string) // Eliminar tarea

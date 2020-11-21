@@ -11,5 +11,5 @@ const TaskSchema = new Schema({
     status:         { type: Number, required: true },
 })
 
-module.exports = mongoose.model('Tasks', TaskSchema)
+module.exports = mongoose.model('Tasks', TaskSchema) // Se exporta como modelo
 

@@ -7,6 +7,7 @@ router.post('/', taskController.addTask);   // Esta ruta es el conducto para añ
 router.get('/:id', taskController.getTask); // Esta es el conducto para traer una tarea especifica
 router.put('/:id', taskController.putTask); // Esta es el conducto para actualizar una tarea especifica
 router.put('/:id/status', taskController.putStatusTask); // Esta es el conducto para actualizar el estado de una tarea especifica SoftDelete
+router.put('/:id/softdelete', taskController.softDeleteTask); // Esta es el conducto para actualizar el estado de una tarea especifica SoftDelete
 router.delete('/:id', taskController.deleteTask); // Esta es el conducto para eliminar tarea especifica SoftDelete
 
-module.exports = router;
+module.exports = router; // Exportando un objeto con métodos y propiedades que se usan en 

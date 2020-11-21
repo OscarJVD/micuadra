@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms'; // Facilita obtener el value de los inputs
 
 // Importamos Proveedores
 import { TaskService } from '../../services/task.service';
@@ -103,5 +103,27 @@ export class TasksComponent implements OnInit {
       this.getTasks(); // Vuelve y muestra la tabla
     })
   }
+
+  softDeleteTask(task: Task, form: NgForm){
+    console.log(task);
+    console.log(typeof task.status);
+    if(confirm('¿Esta seguro de que desea eliminar esta tarea de forma permanente?')){
+      this.taskService.softDeleteTask(task).subscribe(res => {
+        this.resetForm(form);
+        M.toast({ html: 'Tarea eliminada' })
+        this.getTasks(); // Vuelve y muestra la tabla
+      })
+    }
+  }
+
+  // deleteTask(_id: string)
+  // {
+  //   if(confirm('¿Esta seguro de que desea eliminar esta tarea de forma permanente?')){
+  //     this.taskService.deleteTask(_id).subscribe(res => {
+  //       this.getTasks();
+  //       M.toast({ html: "Tarea eliminada permanentemente"});
+  //     })
+  //   }
+  // }
 
 }

@@ -7,11 +7,17 @@ import { HttpClientModule } from '@angular/common/http'; // Módulo para comunic
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { TasksComponent } from './components/tasks/tasks.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TasksComponent
+    TasksComponent,
+    SigninComponent,
+    SignupComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@ loginCtrl.signin = async (req, res) => {
 
 loginCtrl.signup = (req, res) => {
     const params = req.body;
+
     const newUser = new Login({
         email: params.email,
         name: params.name,
@@ -35,7 +36,9 @@ loginCtrl.verifyToken = (req, res, next) => {
     } else {
         const token = req.headers.authorization.split(' ')[1]; // Accedemos al token
 
-        if (token === 'null') return 0
+        if (token === 'null') {
+            return 0
+        }
         else {
             const payload = jwt.verify(token, 'secret');
             req.userID = payload._id;

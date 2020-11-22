@@ -69,9 +69,7 @@ taskCtrl.softDeleteTask = async (req, res) => {
 
     const { id } = req.params;
 
-    const task = {
-        status: 3
-    };
+    const task = {status: 3};
 
     await Task.findByIdAndUpdate(id, { $set: task }, { new: true });
     res.json({ "status": "Status Task Updated (SoftDelete)" });

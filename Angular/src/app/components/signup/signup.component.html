@@ -1,1 +1,55 @@
-<p>signup works!</p>
+<div class="row mt-1_5">
+    <div class="col s12 m3 l4"></div>
+    <div class="col s12 m3 l4 center">
+        <div class="card">
+            <div class="card-content">
+                <div class="col s12 center">
+                    <h5>Registrate aquí</h5>
+                    <!-- <img src="../../../assets/img/login.svg" width="120" alt="Logo Login"> -->
+                </div>
+
+                <div class="row">
+                    <form class="s12">
+                        <div class="input-field col s12">
+                            <!-- Icono de email -->
+                            <i class="material-icons prefix">account_circle</i>
+                            <input type="text" id="usName" name="usName" class="validate" maxlength="200"
+                                [(ngModel)]="user.name"> <!-- El ngModel agarra el email :D -->
+                            <label for="usName">Nombre</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <!-- Icono de email -->
+                            <i class="material-icons prefix">email</i>
+                            <input type="text" id="usEmail" name="usEmail" class="validate" maxlength="100"
+                                [(ngModel)]="user.email"> <!-- El ngModel agarra el email :D -->
+                            <label for="usEmail">Correo</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">lock</i>
+                            <input type="password" id="usPassword" name="usPassword" class="validate"
+                                maxlength="100" autocomplete="on" [(ngModel)]="user.password">
+                            <label for="usPassword">Contraseña</label>
+                        </div>
+
+                        <div class="col s12">
+                            <a (click)="checkExist()" class="waves-effect waves-light btn-large teal darken-4"
+                                style="width: 80%;">
+                                <i class="material-icons right">send</i>Registrar
+                            </a>
+                        </div>
+
+                        <div class="col s12 mt-0_5">
+                            <!-- Router de Angular -->
+                            <!-- <a routerLink="/signin" class="ft-w-bold">Iniciar Sesión</a> -->
+                            <a href="/signin" routerLink="/signin" class="ft-w-bold" >Iniciar Sesión</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m3 l4"></div>
+
+</div>

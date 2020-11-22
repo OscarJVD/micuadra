@@ -1,1 +1,47 @@
-<p>signin works!</p>
+<div class="row mt-1_5">
+    <div class="col s12 m3 l4"></div>
+    <div class="col s12 m3 l4 center">
+        <div class="card">
+            <div class="card-content">
+                <div class="col s12 center">
+                    <img src="../../../assets/img/login.svg" width="120" alt="Logo Login">
+                </div>
+
+                <div class="row">
+                    <form class="s12">
+                        <div class="input-field col s12">
+                            <!-- Icono de email -->
+                            <i class="material-icons prefix">email</i>
+                            <input type="text" required  minlength="3" id="signEmail" name="signEmail" class="validate" maxlength="100"
+                                [(ngModel)]="user.email">
+
+                            <label for="signEmail">Correo</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">lock</i>
+                            <input type="password" required autocomplete="on" id="signPassword" name="signPassword"
+                                class="validate" maxlength="100" [(ngModel)]="user.password">
+                            <label for="signPassword">Contraseña</label>
+                        </div>
+
+                        <div class="col s12">
+                            <a (click)="signIn()" class="waves-effect waves-light btn-large teal darken-4"
+                                style="width: 80%;">
+                                <i class="material-icons right">send</i>Iniciar Sesión
+                            </a>
+                        </div>
+
+                        <div class="col s12 mt-0_5">
+                            <!-- Router de Angular -->
+                            <!-- <a routerLink="/signup" class="ft-w-bold" >Registrarse</a> -->
+                            <a href="/signup" routerLink="/signup" class="ft-w-bold">Registrarse</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m3 l4"></div>
+
+</div>

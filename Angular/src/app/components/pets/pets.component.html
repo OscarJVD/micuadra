@@ -1,0 +1,123 @@
+<app-home></app-home>
+<div class="container">
+    <div class="row">
+        <div class="col s6">
+            <div class="card white" style="margin-top: 8%;">
+                <div class="card-content white-text">
+                    <article class="card-title black-text center">
+                        <b>Nueva Mascota</b>
+                    </article>
+                    <form #petForm="ngForm" (ngSubmit)="addPet(petForm)">
+                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="petService.selectedPet._id">
+
+                        <div class="row">
+                            <div class="input-fields col s12">
+                                <label for="name" class="left">Nombre</label>
+                                <input class="validate" type="text" id="name" name="name" #name="ngModel"
+                                    [(ngModel)]="petService.selectedPet.name"
+                                    placeholder="Ingrese el nombre de la mascota">
+                            </div>
+
+                            <div class="input-fields col s12">
+                                <label for="type" class="left">Tipo</label>
+
+                                <input class="validate" id="type" type="text" name="type" #type="ngModel"
+                                    [(ngModel)]="petService.selectedPet.type"
+                                    placeholder="Ingrese el tipo que no este en lista">
+                            </div>
+
+                            <div class="input-fields col s12">
+                                <label for="description" class="left">Descripción</label>
+
+                                <textarea data-length="120" id="description" name="description" #description="ngModel"
+                                    [(ngModel)]="petService.selectedPet.description" placeholder="Ingrese descripción"
+                                    id="textarea1" class="materialize-textarea validate"></textarea>
+                            </div>
+
+                            <div class="card-action">
+                                <div class="input-field col s6">
+                                    <button (click)="resetForm(petForm)" type="button" style="width: 100%;"
+                                        class="btn left white-text grey darken-3 waves-effect waves-light btn-small">
+                                        Limpiar
+                                    </button>
+                                </div>
+                                <div class="input-field col s6">
+                                    <button style="width: 100%;"
+                                        class="btn right white-text blue darken-3 waves-effect waves-light btn-small">
+                                        Guardar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12">
+            <div class="card white">
+                <div class="card-content white-text">
+                    <span class="card-title black-text">
+                        <b>Lista de Mascotas</b>
+                    </span>
+                    <div class="row">
+                        <div class="col s12" style="overflow: auto;">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix teal-text">search</i>
+                                <input type="text" id="searchPet" name="searchPet"
+                                    placeholder="Buscar por nombre de mascota" (keyup)="getPetsByName()">
+                                <label for="search">Buscar Mascota</label>
+                            </div>
+                            <table class="black-text responsive-table">
+                                <thead>
+                                    <th>Nombre</th>
+                                    <th>Tipo</th>
+                                    <th>Descripción</th>
+                                    <th>Estado</th>
+                                    <th>Operación</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let pet of petService.pet">
+                                        <td>{{ pet.name }}</td>
+                                        <td>{{ pet.type }}</td>
+                                        <td>{{ pet.description }}</td>
+                                        <td *ngIf="pet.status == 1">
+                                            <span class="new badge green">
+                                                {{ "Activa" }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
+                                                style="margin-left: 10px; margin-right: 10px;" (click)="updatePet(pet)">
+                                                <i class="material-icons white-text">edit</i>
+                                            </button>
+                                            <button type="button"
+                                                class="btn-floating btn-large waves-effect waves-light btn-small grey darken-4"
+                                                style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                (click)="updateStatusPet(pet,petForm)">
+                                                <i class="material-icons white-text">archive</i>
+                                            </button>
+                                            <button type="button"
+                                                class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
+                                                style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                (click)="softDeletePet(pet,petForm)">
+                                                <i class="material-icons white-text">delete</i>
+                                            </button>
+                                            <!-- <button type="button"
+                                                class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
+                                                style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                (click)="deletepet(pet._id)">
+                                                <i class="material-icons white-text">delete</i>
+                                            </button> -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

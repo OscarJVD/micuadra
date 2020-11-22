@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private authService: AuthService){}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  logOut(){
+    if(confirm("¿Estas seguro de que deseas cerrar sesión?")) this.authService.logOut();
   }
 
 }

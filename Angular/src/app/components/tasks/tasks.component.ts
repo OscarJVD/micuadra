@@ -91,6 +91,7 @@ export class TasksComponent implements OnInit {
   // }
 
   updateTask(task: Task){
+    window.scrollTo(0, 71);
     this.taskService.selectedTask = task; // cargar la tarea en el formulario para poder editar
   }
 
@@ -107,7 +108,7 @@ export class TasksComponent implements OnInit {
   softDeleteTask(task: Task, form: NgForm){
     console.log(task);
     console.log(typeof task.status);
-    if(confirm('¿Esta seguro de que desea eliminar esta tarea de forma permanente?')){
+    if(confirm(`¿Esta seguro de que desea eliminar la tarea con título: "${task.title}" ?`)){
       this.taskService.softDeleteTask(task).subscribe(res => {
         this.resetForm(form);
         M.toast({ html: 'Tarea eliminada' })

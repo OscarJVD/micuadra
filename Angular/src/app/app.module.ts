@@ -17,6 +17,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { PetsComponent } from './components/pets/pets.component';
+import { TravelsComponent } from './components/travels/travels.component';
+import { TravelspgComponent } from './components/travelspg/travelspg.component';
 const routes: Routes = [];
 
 @NgModule({
@@ -26,7 +28,9 @@ const routes: Routes = [];
     SigninComponent,
     SignupComponent,
     HomeComponent,
-    PetsComponent
+    PetsComponent,
+    TravelsComponent,
+    TravelspgComponent
   ],
   imports: [
     AppRoutingModule,

@@ -19,6 +19,8 @@ export class TasksComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTasks();
+    this.getArchivedTasks();
+    this.getDeletedTasks();
     // this.time1();
   }
 
@@ -29,6 +31,15 @@ export class TasksComponent implements OnInit {
   getTasks(){
     this.taskService.getTasks().subscribe(res => this.taskService.task = res as Task[])
   }
+
+  getArchivedTasks(){
+    this.taskService.getArchivedTasks().subscribe(res => this.taskService.archived = res as Task[])
+  }
+
+  getDeletedTasks(){
+    this.taskService.getDeletedTasks().subscribe(res => this.taskService.deleted = res as Task[])
+  }
+
 
   // time1(date = new Date()) {
   //   let
@@ -45,6 +56,9 @@ export class TasksComponent implements OnInit {
         this.resetForm(form);
         M.toast({html: 'Tarea actualizada satisfactoriamente'})
         this.getTasks(); // Vuelve y muestra la tabla con la actualización
+    this.getArchivedTasks();
+    this.getDeletedTasks();
+
       })
     }else{
       delete form.value._id;
@@ -66,6 +80,9 @@ export class TasksComponent implements OnInit {
         this.resetForm(form);
         M.toast({ html: 'Tarea guardada con exito' })
         this.getTasks(); // Vuelve y muestra la tabla
+    this.getArchivedTasks();
+    this.getDeletedTasks();
+
       })
     }
   }
@@ -80,7 +97,11 @@ export class TasksComponent implements OnInit {
         return el.title.toUpperCase().includes(key_to_find.toUpperCase());
       })
       this.taskService.task = filtered_e as Task[];
-    }else this.getTasks();
+    }else {
+      this.getTasks();
+      this.getArchivedTasks();
+      this.getDeletedTasks();
+    }
 
     // console.log(value);
   }
@@ -100,8 +121,15 @@ export class TasksComponent implements OnInit {
     console.log(typeof task.status);
     this.taskService.putStatusTask(task).subscribe(res => {
       this.resetForm(form);
-      M.toast({ html: 'Tarea archivada con exito' })
+      if(task.status != 1){
+        M.toast({ html: 'Tarea reactivada' })
+      }else{
+        M.toast({ html: 'Tarea archivada con exito' })
+      }
       this.getTasks(); // Vuelve y muestra la tabla
+    this.getArchivedTasks();
+    this.getDeletedTasks();
+
     })
   }
 
@@ -113,6 +141,9 @@ export class TasksComponent implements OnInit {
         this.resetForm(form);
         M.toast({ html: 'Tarea eliminada' })
         this.getTasks(); // Vuelve y muestra la tabla
+    this.getArchivedTasks();
+    this.getDeletedTasks();
+
       })
     }
   }

@@ -17,6 +17,7 @@ app.use(cors({ origin: 'http://localhost:4200' })); // Para el error de Cors Pol
 app.use('/api/tasks', require('./routes/task.routes')) // api... es el nombre de la ruta
 app.use('/api/login', require('./routes/login.routes')) // api.bla bla.. es el nombre de la ruta
 app.use('/api/pets', require('./routes/pet.routes')) // Aqui se encuentran las rutas que acceden a las operaciones crud y etc
+app.use('/api/travels', require('./routes/travel.routes')) // Aqui se encuentran las rutas que acceden a las operaciones crud y etc
 
 // Start the server
 app.listen(app.get('port'), () => console.log(`Server on port: ${app.get('port')}`))

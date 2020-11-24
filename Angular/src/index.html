@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Solutask</title>
+  <title>Solutravel</title>
   <base href="/">
 
   <!-- Bootstrap -->
@@ -22,18 +22,76 @@
   <!-- Material-icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+  <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 
 <body>
   <app-root></app-root>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      M.AutoInit();
+    });
+  </script>
+
+  <script>
+    // Side Menu
+    const sideNav = document.querySelector('.sidenav');
+    M.Sidenav.init(sideNav, {});
+
+    // Slider
+    // const slider = document.querySelector('.slider');
+    // M.Slider.init(slider, {
+    //   indicators: false,
+    //   height: 500,
+    //   transition: 500,
+    //   interval: 6000
+    // });
+
+    $(document).ready(function () {
+      $('.slider').slider({
+        // full_width: true,
+        indicators: false,
+        height: 500,
+        transition: 500,
+        interval: 6000
+      });
+    });
+
+    // Scrollspy
+    const ss = document.querySelectorAll('.scrollspy');
+    M.ScrollSpy.init(ss, {});
+
+    // Material Boxed
+    const mb = document.querySelectorAll('.materialboxed');
+    M.Materialbox.init(mb, {});
+
+    // Auto Complete
+    const ac = document.querySelector('.autocomplete');
+    M.Autocomplete.init(ac, {
+      data: {
+        "Aruba": null,
+        "Cancun Mexico": null,
+        "Hawaii": null,
+        "Florida": null,
+        "California": null,
+        "Jamaica": null,
+        "Europe": null,
+        "The Bahamas": null,
+      }
+    });
+  </script>
 </body>
 
 </html>

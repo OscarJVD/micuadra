@@ -3,6 +3,8 @@ const router         = express.Router();
 const petController = require('../controllers/pet.controller.js');
 
 router.get('/', petController.getPets);   // Esta ruta es el conducto para obtener las tareas
+router.get('/archived', petController.getArchivedPets);   // Esta ruta es el conducto para obtener las tareas archivadas
+router.get('/deleted', petController.getDeletedPets);   // Esta ruta es el conducto para obtener las tareas archivadas
 router.post('/', petController.addPet);   // Esta ruta es el conducto para añadir tarea
 router.get('/:id', petController.getPet); // Esta es el conducto para traer una tarea especifica
 router.put('/:id', petController.putPet); // Esta es el conducto para actualizar una tarea especifica

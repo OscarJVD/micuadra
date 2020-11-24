@@ -15,6 +15,22 @@ petCtrl.getPets = async (req, res) => { // Aqui falta filtrar donde el status se
     res.json(pets);
 }
 
+// Función para obtener todas las mascotas archivadas
+petCtrl.getArchivedPets = async (req, res) => { // Aqui falta filtrar donde el status sea 2
+    const pets = await Pet.find( // Esto trae todas las mascotas con estado 2
+        {status: 2}
+    );
+    res.json(pets);
+}
+
+// Función para obtener todas las mascotas eliminadas
+petCtrl.getDeletedPets = async (req, res) => { // Aqui falta filtrar donde el status sea 3
+    const pets = await Pet.find( // Esto trae todas las mascotas con estado 3
+        {status: 3}
+    );
+    res.json(pets);
+}
+
 // Genenrar mascota
 petCtrl.addPet = async (req, res) => {
     const pet = new Pet(req.body)

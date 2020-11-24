@@ -1,0 +1,391 @@
+<div class="navbar-fixed">
+  <nav class="blue darken-2">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Solutravel</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a (click)="scrTop()" class="waves-effect waves-light">Inicio</a>
+          </li>
+          <li>
+            <a (click)="onClick('search')" class="waves-effect waves-light">Buscador</a>
+          </li>
+          <li>
+            <a (click)="onClick('popular')" class="waves-effect waves-light">Lugares</a>
+          </li>
+          <li>
+            <a (click)="onClick('gallery')" class="waves-effect waves-light">Galería</a>
+          </li>
+          <li>
+            <a (click)="onClick('packs')" class="waves-effect waves-light">Paquetes</a>
+          </li>
+          <li>
+            <a (click)="onClick('contact')" class="waves-effect waves-light">Contacto</a>
+          </li>
+          <li>
+            <a href="/signin" class="waves-effect waves-light">Ingresar</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<ul class="sidenav" id="mobile-demo">
+  <li>
+    <a (click)="scrTop()" class="waves-effect waves-light">Inicio</a>
+  </li>
+  <li>
+    <a (click)="onClick('search')" class="waves-effect waves-light">Buscador</a>
+  </li>
+  <li>
+    <a (click)="onClick('popular')" class="waves-effect waves-light">Lugares</a>
+  </li>
+  <li>
+    <a (click)="onClick('gallery')" class="waves-effect waves-light">Galería</a>
+  </li>
+  <li>
+    <a (click)="onClick('packs')" class="waves-effect waves-light">Paquetes</a>
+  </li>
+  <li>
+    <a (click)="onClick('contact')" class="waves-effect waves-light">Contacto</a>
+  </li>
+  <li>
+    <a href="/signin" class="waves-effect waves-light">Ingresar</a>
+  </li>
+</ul>
+
+
+
+
+<!-- Section: Slider -->
+<section class="slider">
+  <ul class="slides">
+    <li>
+      <img src="https://image.ibb.co/hbEMux/resort5.jpg" alt="">
+      <div class="caption center-align">
+        <h2>Disfruta de tus vacaciones soñadas</h2>
+        <h5 class="light grey-text text-lighten-3 hide-on-small-only"></h5>
+        <a href="#" class="btn btn-large blue darken-2 waves-effect waves-light">Ver mas</a>
+      </div>
+    </li>
+    <li>
+      <img src="https://image.ibb.co/mn1egc/resort6.jpg" alt="">
+      <div class="caption left-align">
+        <h2>Trabajamos con todos los presupuestos</h2>
+        <h5 class="light grey-text text-lighten-3 hide-on-small-only"></h5>
+        <a href="#" class="btn btn-large blue darken-2 waves-effect waves-light">Ver mas</a>
+      </div>
+    </li>
+    <li>
+      <img src="https://image.ibb.co/mbCVnH/resort7.jpg" alt="">
+      <div class="caption right-align">
+        <h2>Escapadas en grupo e individuales</h2>
+        <h5 class="light grey-text text-lighten-3 hide-on-small-only"></h5>
+        <a href="#" class="btn btn-large blue darken-2 waves-effect waves-light">Ver mas</a>
+      </div>
+    </li>
+  </ul>
+</section>
+
+
+<!-- Section: Search -->
+<section id="search" class="section section-search blue darken-2 darken-1 white-text center scrollspy">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <h3>Buscar destinos</h3>
+        <div class="input-field">
+          <input class="white grey-text autocomplete" placeholder="Salto del Aguila, Los pianos, El Tapete..."
+            type="text" id="autocomplete-input">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Icon Boxes -->
+<section class="section section-icons grey lighten-4 center">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="card-panel">
+          <i class="material-icons large blue-text">room</i>
+          <h4>Escoge dónde</h4>
+          <p>Variedad de sitios turistícos</p>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="card-panel">
+          <i class="material-icons large blue-text">store</i>
+          <h4>Tienda de viajes</h4>
+          <p>Muchos recuerdos que llevarse</p>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="card-panel">
+          <i class="material-icons large blue-text">airplanemode_active</i>
+          <h4>Vuela barato</h4>
+          <p>Costos conformes a su bolsillo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Popular -->
+<section id="popular" class="section section-popular scrollspy">
+  <div class="container">
+    <div class="row">
+      <h4 class="center">
+        <span class="blue-text">Sitios</span> populares</h4>
+      <div class="col s12 m4">
+        <div class="card">
+          <div class="card-image">
+            <img src="../../../assets/img/aguila.jpeg" alt="">
+            <span class="card-title">Salto del aguila</span>
+          </div>
+          <div class="card-content">
+            <p>
+              Dificultad: fácil
+            </p>
+            <p>
+              Tipo: circular
+            </p>
+            <p>
+              Distancia: 14 km
+
+            </p>
+            <p>
+              Duración aproximada: 6h
+
+            </p>
+            <p>
+              Ascenso total: 844m
+
+            </p>
+            <p>
+              Descenso total: 814m
+
+            </p>
+            <p>
+              Altitud máxima: 426m
+
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="card">
+          <div class="card-image">
+            <img src="../../../assets/img/2.jpeg" alt="">
+            <span class="card-title">Los Pianos</span>
+          </div>
+          <div class="card-content">
+            <p>
+              Hermoso sector de cascadas llamado por los lugareños "Los Pianos", en Caño Cristales.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m4">
+        <div class="card">
+          <div class="card-image">
+            <img src="../../../assets/img/4.jpeg" alt="">
+            <span class="card-title">El Tapete</span>
+          </div>
+          <div class="card-content">
+            <p>
+              Uno de los sectores más bonitos en la visita a Caño Cristales es el que llaman El Tapete, donde la planta
+              macarenia clavigera abunda y da colores rojos hermosos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 center">
+        <a (click)="onClick('contact')" class="btn btn-large grey darken-3">
+          <i class="material-icons left">send</i> Contacta para agendar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Follow -->
+<section class="section section-follow blue darken-2 darken-2 white-text center">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <h4>Sigue Solutravel</h4>
+        <p>Siguenos en nuestras redes sociales para obtener ofertas</p>
+        <a href="htttps://facebook.com" target="_blank" class="white-text">
+          <i class="fab fa-facebook fa-4x"></i>
+        </a>
+        <a href="htttps://twitter.com" target="_blank" class="white-text">
+          <i class="fab fa-twitter fa-4x"></i>
+        </a>
+        <a href="htttps://linkedin.com" target="_blank" class="white-text">
+          <i class="fab fa-linkedin fa-4x"></i>
+        </a>
+        <a href="htttps://googleplus.com" target="_blank" class="white-text">
+          <i class="fab fa-google-plus fa-4x"></i>
+        </a>
+        <a href="htttps://pinterest.com" target="_blank" class="white-text">
+          <i class="fab fa-pinterest fa-4x"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section: Gallery -->
+<section id="gallery" class="section section-gallery scrollspy">
+  <div class="container">
+    <h4 class="center">
+      <span class="blue darken-2-text"> </span> Galería de fotos
+    </h4>
+    <div class="row">
+      <div class="col s12 m3">
+        <img class="materialboxed responsive-img" src="../../../assets/img/tablas.jpg" alt="">
+      </div>
+      <div class="col s12 m3">
+        <img class="materialboxed responsive-img" src="../../../assets/img/naci.jpg" alt="">
+      </div>
+      <div class="col s12 m3">
+        <img class="materialboxed responsive-img" src="../../../assets/img/cafuche.jpg" alt="">
+      </div>
+      <div class="col s12 m3">
+        <img class="materialboxed responsive-img" src="../../../assets/img/aguila.jpeg" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="packs" class="section section-gallery scrollspy">
+  <div class="container">
+    <h4 class="center">
+      <span class="blue darken-2-text"> </span> Paquetes
+    </h4>
+    <div class="row">
+      <div class="col s12 m6">
+        <h6 class="center">
+          <span class="amber-text">
+            Premium
+          </span>
+        </h6>
+        <ul class="collapsible">
+          <li *ngFor="let travel of travelService.premium">
+            <div class="collapsible-header">
+              <i class="material-icons amber-text">airplanemode_active</i>
+              {{ travel.placeName }}
+            </div>
+            <div class="collapsible-body">
+              <h5>Lugares para visitar</h5>
+              <p>{{ travel.places }}</p>
+
+              <h5>Por hacer</h5>
+              <p>{{ travel.toDo }}</p>
+
+              <h5>Comida</h5>
+              <p>{{ travel.food }}</p>
+
+              <h5>Hoteles</h5>
+              <p>{{ travel.hotels }}</p>
+
+              <h5>Precio</h5>
+              <p>${{ travel.price }} COP</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col s12 m6">
+        <h6 class="center">
+          <span class="blue-text">
+            Economicos
+          </span>
+        </h6>
+        <ul class="collapsible">
+          <li *ngFor="let travel of travelService.cheap">
+            <div class="collapsible-header">
+              <i class="material-icons blue-text">airplanemode_active</i>
+              {{ travel.placeName }}
+            </div>
+            <div class="collapsible-body">
+              <h5>Lugares para visitar</h5>
+              <p>{{ travel.places }}</p>
+
+              <h5>Por hacer</h5>
+              <p>{{ travel.toDo }}</p>
+
+              <h5>Comida</h5>
+              <p>{{ travel.food }}</p>
+
+              <h5>Hoteles</h5>
+              <p>{{ travel.hotels }}</p>
+
+              <h5>Precio</h5>
+              <p>${{ travel.price }} COP</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Section: Contact -->
+<section id="contact" class="section section-contact scrollspy">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card-panel blue darken-2 white-text center">
+          <i class="material-icons medium">email</i>
+          <h5>Contactanos para agendar</h5>
+          <p></p>
+        </div>
+        <ul class="collection with-header">
+          <li class="collection-header">
+            <h4>Ubicación</h4>
+          </li>
+          <li class="collection-item">Agencia Solutravel</li>
+          <li class="collection-item">CARRERA 36 NO 12-17 LA CASTELLANA</li>
+          <li class="collection-item">Bogotá FL, 3208557442</li>
+        </ul>
+      </div>
+      <div class="col s12 m6">
+        <div class="card-panel grey lighten-3">
+          <h5>Por favor diligencia el formulario</h5>
+          <div class="input-field">
+            <input type="text" placeholder="Ingrese su nombre" id="name">
+            <label for="name">Nombre</label>
+          </div>
+          <div class="input-field">
+            <input type="email" placeholder="Ingrese su correo" id="email">
+            <label for="email">Correo</label>
+          </div>
+          <div class="input-field">
+            <input type="text" placeholder="Ingrese Teléfono" id="phone">
+            <label for="phone">Teléfono</label>
+          </div>
+          <div class="input-field">
+            <textarea class="materialize-textarea" placeholder="Ingrese un mensaje" id="message"></textarea>
+            <label for="message">Mensaje</label>
+          </div>
+          <input type="submit" value="Enviar" class="btn">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="section blue darken-2 darken-2 white-text center">
+  <p class="flow-text">Solutravel &copy; 2020</p>
+</footer>

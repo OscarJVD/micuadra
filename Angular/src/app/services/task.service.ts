@@ -8,6 +8,8 @@ export class TaskService {
 // Aqui agregamos todos los ervicios que se van a consumir desde nuestra API REST
   selectedTask: Task; // Esto guarda toda la info de la tarea que seleccionemos
   task: Task[];
+  archived: Task[];
+  deleted: Task[];
   readonly URL_API = "http://localhost:3000/api/tasks"; // Url de nuestra API REST
 
   constructor(private http: HttpClient) { // Nos ayuda a comunicar back con front
@@ -17,6 +19,16 @@ export class TaskService {
   getTasks() // Hace una petición get para obtener las tareas de esa url
   {
     return this.http.get(this.URL_API);
+  }
+
+  getArchivedTasks() // Hace una petición get para obtener las tareas de esa url
+  {
+    return this.http.get(this.URL_API + '/archived');
+  }
+
+  getDeletedTasks() // Hace una petición get para obtener las tareas de esa url
+  {
+    return this.http.get(this.URL_API + '/deleted');
   }
 
   postTask(task: Task) // Generar una nueva tarea

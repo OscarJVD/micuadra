@@ -15,6 +15,24 @@ taskCtrl.getTasks = async (req, res) => { // Aqui falta filtrar donde el status 
     res.json(tasks);
 }
 
+// Función para obtener todas las tareas archivadas
+taskCtrl.getArchivedTasks = async (req, res) => { // Aqui falta filtrar donde el status sea 2
+    // const tasks = await Task.find(); // Esto trae todas
+    const tasks = await Task.find( // Esto trae todas las tareas con estado 2
+        {status: 2}
+    );
+    res.json(tasks);
+}
+
+// Función para obtener todas las tareas eliminadas
+taskCtrl.getDeletedTasks = async (req, res) => { // Aqui falta filtrar donde el status sea 3
+    // const tasks = await Task.find(); // Esto trae todas
+    const tasks = await Task.find( // Esto trae todas las tareas con estado 3
+        {status: 3}
+    );
+    res.json(tasks);
+}
+
 // Genenrar tarea
 taskCtrl.addTask = async (req, res) => {
     const task = new Task(req.body)

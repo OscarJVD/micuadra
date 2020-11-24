@@ -21,6 +21,8 @@ export class PetsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPets();
+    this.getArchivedPets();
+    this.getDeletedPets();
     // this.time1();
   }
 
@@ -30,6 +32,14 @@ export class PetsComponent implements OnInit {
 
   getPets(){
     this.petService.getPets().subscribe(res => this.petService.pet = res as Pet[])
+  }
+
+  getArchivedPets(){
+    this.petService.getArchivedPets().subscribe(res => this.petService.archived = res as Pet[])
+  }
+
+  getDeletedPets(){
+    this.petService.getArchivedPets().subscribe(res => this.petService.deleted = res as Pet[])
   }
 
   // time1(date = new Date()) {
@@ -49,6 +59,8 @@ export class PetsComponent implements OnInit {
         this.resetForm(form);
         M.toast({html: 'Mascota actualizada satisfactoriamente'})
         this.getPets(); // Vuelve y muestra la tabla con la actualización
+            this.getArchivedPets();
+    this.getDeletedPets();
       })
     }else{
       delete form.value._id;
@@ -73,11 +85,13 @@ export class PetsComponent implements OnInit {
         console.log(res.status);
 
         if(res.status == 23000){
-          return M.toast({html: 'El tipo de mascota que ingresaste ya existe'})
+          return M.toast({html: `El tipo de mascota: ${res.valPet.type} ya existe`})
         }else{
           this.resetForm(form);
           M.toast({ html: 'Mascota guardada con exito' })
           this.getPets(); // Vuelve y muestra la tabla
+              this.getArchivedPets();
+    this.getDeletedPets();
         }
       })
     }
@@ -93,7 +107,11 @@ export class PetsComponent implements OnInit {
         return el.name.toUpperCase().includes(key_to_find.toUpperCase());
       })
       this.petService.pet = filtered_e as Pet[];
-    }else this.getPets();
+    }else{
+      this.getArchivedPets();
+      this.getDeletedPets();
+      this.getPets();
+    }
 
     // console.log(value);
   }
@@ -115,6 +133,8 @@ export class PetsComponent implements OnInit {
       this.resetForm(form);
       M.toast({ html: 'Mascota archivada con exito' })
       this.getPets(); // Vuelve y muestra la tabla
+          this.getArchivedPets();
+    this.getDeletedPets();
     })
   }
 
@@ -126,6 +146,8 @@ export class PetsComponent implements OnInit {
         this.resetForm(form);
         M.toast({ html: 'Mascota eliminada' })
         this.getPets(); // Vuelve y muestra la tabla
+            this.getArchivedPets();
+    this.getDeletedPets();
       })
     }
   }

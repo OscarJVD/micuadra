@@ -5,64 +5,70 @@
             <div class="card white" style="margin-top: 8%;">
                 <div class="card-content white-text">
                     <article class="card-title black-text center">
-                        <b>Nueva Tarea</b>
+                        <b>Nuevo Paquete de Viaje</b>
                     </article>
-                    <form #taskForm="ngForm" (ngSubmit)="addTask(taskForm)">
-                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="taskService.selectedTask._id">
+                    <form #travelForm="ngForm" (ngSubmit)="addTravel(travelForm)">
+                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="travelService.selectedTravel._id">
 
                         <div class="row">
                             <div class="input-fields col s12">
-                                <label for="title" class="left">Título</label>
-                                <input class="validate" type="text" id="title" name="title" #title="ngModel"
-                                    [(ngModel)]="taskService.selectedTask.title"
-                                    placeholder="Ingrese el título de la tarea">
+                                <label for="placeName" class="left">Lugar de viaje</label>
+                                <input class="validate" type="text" id="placeName" name="placeName" #placeName="ngModel"
+                                    [(ngModel)]="travelService.selectedTravel.placeName" placeholder="Sitio de visita">
                             </div>
 
                             <div class="input-fields col s12">
-                                <label for="byWhen" class="left">Fecha de entrega</label>
-                                <input class="validate" type="datetime-local" id="byWhen" name="byWhen"
-                                    #byWhen="ngModel" [(ngModel)]="taskService.selectedTask.byWhen">
-                            </div>
+                                <label for="places" class="left">Sitios turísticos</label>
 
-                            <div class="input-fields col s12">
-                                <label for="assignmentDate" class="left">Fecha de asignación</label>
-                            </div>
-                            <div class="d-flex input-fields col s12">
-                                <input class="validate" id="assignmentDate" type="datetime-local" name="assignmentDate"
-                                    #assignmentDate="ngModel" [(ngModel)]="taskService.selectedTask.assignmentDate">
-                                <!-- <label>
-                                <input type="checkbox" name="todayCheck" class="filled-in" (change)="fillAssignmentDate(todayCheck)"/>
-                                <span class="text-sm pl-25">Hoy</span>
-                            </label> -->
-                            </div>
-
-                            <div class="input-fields col s12">
-                                <label for="subject" class="left">Materia</label>
-
-                                <input class="validate" id="subject" type="text" name="subject" #subject="ngModel"
-                                    [(ngModel)]="taskService.selectedTask.subject"
-                                    placeholder="Ingrese el nombre de la materia">
-                            </div>
-
-                            <div class="input-fields col s12">
-                                <label for="topic" class="left">Tema</label>
-
-                                <input class="validate" type="text" id="topic" name="topic" #topic="ngModel"
-                                    [(ngModel)]="taskService.selectedTask.topic" placeholder="Ingrese el tema a tratar">
-                            </div>
-
-                            <div class="input-fields col s12">
-                                <label for="description" class="left">Pasos para lograrlo</label>
-
-                                <textarea data-length="120" id="description" name="description" #description="ngModel"
-                                    [(ngModel)]="taskService.selectedTask.description"
-                                    placeholder="Ingrese los pasos para lograrlo" id="textarea1"
+                                <textarea data-length="120" id="places" name="places" #places="ngModel"
+                                    [(ngModel)]="travelService.selectedTravel.places" placeholder="Lugares turisticos"
                                     class="materialize-textarea validate"></textarea>
+                            </div>
+
+                            <div class="input-fields col s12">
+                                <label for="toDo" class="left">Actividades para hacer</label>
+
+                                <textarea data-length="120" id="toDo" name="toDo" #toDo="ngModel"
+                                    [(ngModel)]="travelService.selectedTravel.toDo"
+                                    placeholder="Cosas por hacer en el viaje"
+                                    class="materialize-textarea validate"></textarea>
+                            </div>
+
+                            <div class="input-fields col s12">
+                                <label for="food" class="left">Platos</label>
+
+                                <textarea data-length="120" id="food" name="food" #food="ngModel"
+                                    [(ngModel)]="travelService.selectedTravel.food" placeholder="Platos culturales"
+                                    class="materialize-textarea validate"></textarea>
+                            </div>
+
+                            <div class="input-fields col s12">
+                                <label for="hotels" class="left">Hoteles</label>
+
+                                <textarea data-length="120" id="hotels" name="hotels" #hotels="ngModel"
+                                    [(ngModel)]="travelService.selectedTravel.hotels" placeholder="Hoteles"
+                                    class="materialize-textarea validate"></textarea>
+                            </div>
+
+                            <div class="input-fields col s12">
+                                <label for="price" class="left">Precio</label>
+                                <input class="validate" type="number" id="price" name="price" #price="ngModel"
+                                    [(ngModel)]="travelService.selectedTravel.price" placeholder="Precio">
+                            </div>
+
+                            <div class="input-fields col s12">
+                                <label for="type" class="left">Tipo</label>
+                                <select id="type" name="type" #type="ngModel"
+                                [(ngModel)]="travelService.selectedTravel.type" class="validate">
+                                    <option value="0" disabled selected>Seleccione...</option>
+                                    <option value="1">Premium</option>
+                                    <option value="2">Estandar</option>
+                                </select>
                             </div>
 
                             <div class="card-action">
                                 <div class="input-field col s6">
-                                    <button (click)="resetForm(taskForm)" type="button" style="width: 100%;"
+                                    <button (click)="resetForm(travelForm)" type="button" style="width: 100%;"
                                         class="btn left white-text grey darken-3 waves-effect waves-light btn-small">
                                         Limpiar
                                     </button>
@@ -99,66 +105,70 @@
                     <div class="card white">
                         <div class="card-content white-text">
                             <span class="card-title black-text">
-                                <b>Lista de Tareas</b>
+                                <b>Lista de Paquetes de Viaje</b>
                             </span>
                             <div class="row">
                                 <div class="col s12" style="overflow: auto;">
                                     <div class="input-field col s12">
                                         <i class="material-icons prefix teal-text">search</i>
                                         <input type="text" id="search" autocomplete="on" name="search"
-                                            placeholder="Buscar por título" (keyup)="getTasksByTitle()">
-                                        <label for="search">Buscar tarea</label>
+                                            placeholder="Buscar por nombre de lugar" (keyup)="getTravelsByPlaceName()">
+                                        <label for="search">Buscar Paquete de Viaje</label>
                                     </div>
                                     <table class="black-text responsive-table">
                                         <thead>
-                                            <th>Título</th>
-                                            <th>Fecha de entrega</th>
-                                            <th>Fecha de asignación</th>
+                                            <th>Lugar de viaje</th>
+                                            <th>Sitios turísticos</th>
+                                            <th>Actividades para hacer</th>
+                                            <th>Platos</th>
+                                            <th>Hoteles</th>
+                                            <th>Precio</th>
                                             <th>Estado</th>
-                                            <th>Materia</th>
-                                            <th>Tema</th>
-                                            <th>Pasos para lograrlo</th>
+                                            <th>Tipo</th>
                                             <th>Operación</th>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let task of taskService.task">
-                                                <td>{{ task.title }}</td>
-                                                <td class="font-xs">{{ task.byWhen }}</td>
-                                                <td class="font-xs">{{ task.assignmentDate }}</td>
-                                                <td *ngIf="task.status == 1">
+                                            <tr *ngFor="let travel of travelService.travel">
+                                                <td>{{ travel.placeName }}</td>
+                                                <td class="font-xs">{{ travel.places }}</td>
+                                                <td class="font-xs">{{ travel.toDo }}</td>
+                                                <td>{{ travel.food }}</td>
+                                                <td>{{ travel.hotels }}</td>
+                                                <td>{{ travel.price }}</td>
+                                                <td *ngIf="travel.status == 1">
                                                     <span class="new badge green">
-                                                        {{ 'Pendiente' }}
+                                                        {{ 'Activo' }}
                                                     </span>
                                                 </td>
-                                                <td *ngIf="task.status == 2">{{ 'Realizada' }}</td>
-                                                <td>{{ task.subject }}</td>
-                                                <td>{{ task.topic }}</td>
-                                                <td>{{ task.description }}</td>
+                                                <td *ngIf="travel.type == 1">
+                                                    <span class="new badge amber accent-4">
+                                                        {{ 'Premium' }}
+                                                    </span>
+                                                </td>
+                                                <td *ngIf="travel.type == 2">
+                                                    <span class="new badge blue accent-3">
+                                                        {{ 'Estandar' }}
+                                                    </span>
+                                                </td>
                                                 <td>
                                                     <button type="button"
                                                         class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
                                                         style="margin-left: 10px; margin-right: 10px;"
-                                                        (click)="updateTask(task)">
+                                                        (click)="updateTravel(travel)">
                                                         <i class="material-icons white-text">edit</i>
                                                     </button>
                                                     <button type="button"
                                                         class="btn-floating btn-large waves-effect waves-light btn-small grey darken-4"
                                                         style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="updateStatusTask(task,taskForm)">
+                                                        (click)="updateStatusTravel(travel,travelForm)">
                                                         <i class="material-icons white-text">archive</i>
                                                     </button>
                                                     <button type="button"
                                                         class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
                                                         style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="softDeleteTask(task,taskForm)">
+                                                        (click)="softDeleteTravel(travel,travelForm)">
                                                         <i class="material-icons white-text">delete</i>
                                                     </button>
-                                                    <!-- <button type="button"
-                                                        class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
-                                                        style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="deleteTask(task._id)">
-                                                        <i class="material-icons white-text">delete</i>
-                                                    </button> -->
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -172,57 +182,62 @@
                     <div class="card white">
                         <div class="card-content white-text">
                             <span class="card-title black-text">
-                                <b>Lista de Tareas Archivadas</b>
+                                <b>Lista de Paquetes de Viaje Archivados</b>
                             </span>
                             <div class="row">
                                 <div class="col s12" style="overflow: auto;">
-                                    <!-- <div class="input-field col s12">
-                                        <i class="material-icons prefix teal-text">search</i>
-                                        <input type="text" id="search" autocomplete="on" name="search"
-                                            placeholder="Buscar por título" (keyup)="getTasksByTitle()">
-                                        <label for="search">Buscar tarea</label>
-                                    </div> -->
                                     <table class="black-text responsive-table">
                                         <thead>
-                                            <th>Título</th>
-                                            <th>Fecha de entrega</th>
-                                            <th>Fecha de asignación</th>
+                                            <th>Lugar de viaje</th>
+                                            <th>Sitios turísticos</th>
+                                            <th>Actividades para hacer</th>
+                                            <th>Platos</th>
+                                            <th>Hoteles</th>
+                                            <th>Precio</th>
                                             <th>Estado</th>
-                                            <th>Materia</th>
-                                            <th>Tema</th>
-                                            <th>Pasos para lograrlo</th>
+                                            <th>Tipo</th>
                                             <th>Operación</th>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let taskAr of taskService.archived">
-                                                <td>{{ taskAr.title }}</td>
-                                                <td class="font-xs">{{ taskAr.byWhen }}</td>
-                                                <td class="font-xs">{{ taskAr.assignmentDate }}</td>
-                                                <td *ngIf="taskAr.status == 2">
+                                            <tr *ngFor="let travelAr of travelService.archived">
+                                                <td>{{ travelAr.placeName }}</td>
+                                                <td class="font-xs">{{ travelAr.places }}</td>
+                                                <td class="font-xs">{{ travelAr.toDo }}</td>
+                                                <td>{{ travelAr.food }}</td>
+                                                <td>{{ travelAr.hotels }}</td>
+                                                <td>{{ travelAr.price }}</td>
+                                                <td *ngIf="travelAr.status == 2">
                                                     <span class="new badge purple">
-                                                        {{ 'Archivada' }}
+                                                        {{ 'Archivado' }}
                                                     </span>
                                                 </td>
-                                                <td>{{ taskAr.subject }}</td>
-                                                <td>{{ taskAr.topic }}</td>
-                                                <td>{{ taskAr.description }}</td>
+                                                <td *ngIf="travel.type == 1">
+                                                    <span class="new badge amber accent-4">
+                                                        {{ 'Premium' }}
+                                                    </span>
+                                                </td>
+                                                <td *ngIf="travel.type == 2">
+                                                    <span class="new badge blue accent-3">
+                                                        {{ 'Estandar' }}
+                                                    </span>
+                                                </td>
                                                 <td>
                                                     <button type="button"
                                                         class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
                                                         style="margin-left: 10px; margin-right: 10px;"
-                                                        (click)="updateTask(taskAr)">
+                                                        (click)="updateTravel(travelAr)">
                                                         <i class="material-icons white-text">edit</i>
                                                     </button>
                                                     <button type="button"
                                                         class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
                                                         style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="softDeleteTask(taskAr,taskForm)">
+                                                        (click)="softDeleteTravel(travelAr,travelForm)">
                                                         <i class="material-icons white-text">delete</i>
                                                     </button>
                                                     <button type="button"
                                                         class="btn-floating btn-large waves-effect waves-light btn-small green accent-4"
                                                         style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="updateStatusTask(taskDe,taskForm)">
+                                                        (click)="updateStatusTravel(travelAr,travelForm)">
                                                         <i class="material-icons white-text">trending_up</i>
                                                     </button>
                                                 </td>
@@ -238,59 +253,58 @@
                     <div class="card white">
                         <div class="card-content white-text">
                             <span class="card-title black-text">
-                                <b>Lista de Tareas Eliminadas</b>
+                                <b>Lista de Paquetes de Viaje Eliminados</b>
                             </span>
                             <div class="row">
                                 <div class="col s12" style="overflow: auto;">
-                                    <!-- <div class="input-field col s12">
-                                        <i class="material-icons prefix teal-text">search</i>
-                                        <input type="text" id="search" autocomplete="on" name="search"
-                                            placeholder="Buscar por título" (keyup)="getTasksByTitle()">
-                                        <label for="search">Buscar tarea</label>
-                                    </div> -->
                                     <table class="black-text responsive-table">
                                         <thead>
-                                            <th>Título</th>
-                                            <th>Fecha de entrega</th>
-                                            <th>Fecha de asignación</th>
+                                            <th>Lugar de viaje</th>
+                                            <th>Sitios turísticos</th>
+                                            <th>Actividades para hacer</th>
+                                            <th>Platos</th>
+                                            <th>Hoteles</th>
+                                            <th>Precio</th>
                                             <th>Estado</th>
-                                            <th>Materia</th>
-                                            <th>Tema</th>
-                                            <th>Pasos para lograrlo</th>
+                                            <th>Tipo</th>
                                             <th>Operación</th>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor="let taskDe of taskService.deleted">
-                                                <td>{{ taskDe.title }}</td>
-                                                <td class="font-xs">{{ taskDe.byWhen }}</td>
-                                                <td class="font-xs">{{ taskDe.assignmentDate }}</td>
-                                                <td *ngIf="taskDe.status == 3">
+                                            <tr *ngFor="let travelDe of travelService.deleted">
+                                                <td>{{ travelDe.placeName }}</td>
+                                                <td class="font-xs">{{ travelDe.places }}</td>
+                                                <td class="font-xs">{{ travelDe.toDo }}</td>
+                                                <td>{{ travelDe.food }}</td>
+                                                <td>{{ travelDe.hotels }}</td>
+                                                <td>{{ travelDe.price }}</td>
+                                                <td *ngIf="travelDe.status == 3">
                                                     <span class="new badge red">
-                                                        {{ 'Eliminada' }}
+                                                        {{ 'Eliminado' }}
                                                     </span>
                                                 </td>
-                                                <td>{{ taskDe.subject }}</td>
-                                                <td>{{ taskDe.topic }}</td>
-                                                <td>{{ taskDe.description }}</td>
+                                                <td *ngIf="travel.type == 1">
+                                                    <span class="new badge amber accent-4">
+                                                        {{ 'Premium' }}
+                                                    </span>
+                                                </td>
+                                                <td *ngIf="travel.type == 2">
+                                                    <span class="new badge blue accent-3">
+                                                        {{ 'Estandar' }}
+                                                    </span>
+                                                </td>
                                                 <td>
                                                     <button type="button"
                                                         class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
                                                         style="margin-left: 10px; margin-right: 10px;"
-                                                        (click)="updateTask(taskDe)">
+                                                        (click)="updateTravel(travelDe)">
                                                         <i class="material-icons white-text">edit</i>
                                                     </button>
                                                     <button type="button"
                                                         class="btn-floating btn-large waves-effect waves-light btn-small green accent-4"
                                                         style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="updateStatusTask(taskDe,taskForm)">
+                                                        (click)="updateStatusTravel(travelDe,travelForm)">
                                                         <i class="material-icons white-text">trending_up</i>
                                                     </button>
-                                                    <!-- <button type="button"
-                                                        class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
-                                                        style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="softDeleteTask(taskDe,taskForm)">
-                                                        <i class="material-icons white-text">delete</i>
-                                                    </button> -->
                                                 </td>
                                             </tr>
                                         </tbody>

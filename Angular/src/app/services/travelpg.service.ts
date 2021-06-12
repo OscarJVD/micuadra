@@ -12,6 +12,7 @@ export class TravelpgpgService {
   // travelpg: Travelpg[];
   // archived: Travelpg[];
   // deleted: Travelpg[];
+  // deleted: Travelpg[];
 
   selectedTravel: Travel; // Esto guarda toda la info de la tarea que seleccionemos
   travel: Travel[];

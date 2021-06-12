@@ -1,0 +1,407 @@
+<app-home></app-home>
+
+<main>
+    <div class="container">
+        <div class="row j-c-c">
+            <div class="col s7" style="margin-left: 18%;">
+                <div class="card white hoverable" style="margin-top: 8%;">
+                    <div class="card-content white-text">
+                        <article class="card-title black-text center">
+                            <b>Cuadrangular</b>
+                        </article>
+                        <form #quadrangularForm="ngForm" (ngSubmit)="addQuadrangular(quadrangularForm)">
+                            <input type="hidden" name="_id" #_id="ngModel"
+                                [(ngModel)]="quadrangularService.selectedQuadrangular._id">
+
+                            <div class="row">
+                                <div class="input-fields col s12">
+                                    <label for="firstTeam" class="left">Equipo A</label>
+                                    <input class="validate" type="text" id="firstTeam" name="firstTeam"
+                                        #firstTeam="ngModel"
+                                        [(ngModel)]="quadrangularService.selectedQuadrangular.firstTeam"
+                                        placeholder="Nombre Equipo A">
+                                    <!-- (input)="showInputs('byWhen')" -->
+                                </div>
+
+                                <div class="input-fields col s12">
+                                    <label for="secondTeam" class="left">Equipo B</label>
+                                    <input class="validate" type="text" id="secondTeam" name="secondTeam"
+                                        #secondTeam="ngModel"
+                                        [(ngModel)]="quadrangularService.selectedQuadrangular.secondTeam"
+                                        placeholder="Nombre Equipo B">
+                                    <!-- (input)="showInputs('byWhen')" -->
+                                </div>
+
+                                <div class="input-fields col s12">
+                                    <label for="firstCoupleScore" class="left">Marcador A - B</label>
+                                    <input class="validate" type="text" id="firstCoupleScore" name="firstCoupleScore"
+                                        #firstCoupleScore="ngModel"
+                                        [(ngModel)]="quadrangularService.selectedQuadrangular.firstCoupleScore"
+                                        placeholder="Marcador A - B">
+                                    <!-- (input)="showInputs('byWhen')" -->
+                                </div>
+
+                                <div class="input-fields col s12">
+                                    <label for="thirdTeam" class="left">Equipo C</label>
+                                    <input class="validate" type="text" id="thirdTeam" name="thirdTeam"
+                                        #thirdTeam="ngModel"
+                                        [(ngModel)]="quadrangularService.selectedQuadrangular.thirdTeam"
+                                        placeholder="Nombre Equipo C">
+                                    <!-- (input)="showInputs('byWhen')" -->
+                                </div>
+
+                                <div class="input-fields col s12">
+                                    <label for="fourthTeam" class="left">Equipo D</label>
+                                    <input class="validate" type="text" id="fourthTeam" name="fourthTeam"
+                                        #fourthTeam="ngModel"
+                                        [(ngModel)]="quadrangularService.selectedQuadrangular.fourthTeam"
+                                        placeholder="Nombre Equipo D">
+                                    <!-- (input)="showInputs('byWhen')" -->
+                                </div>
+
+
+                                <div class="input-fields col s12">
+                                    <label for="secondCoupleScore" class="left">Marcador C - D</label>
+                                    <input class="validate" type="text" id="secondCoupleScore" name="secondCoupleScore"
+                                        #secondCoupleScore="ngModel"
+                                        [(ngModel)]="quadrangularService.selectedQuadrangular.secondCoupleScore"
+                                        placeholder="Marcador C - D">
+                                    <!-- (input)="showInputs('byWhen')" -->
+                                </div>
+
+                                <!-- <div class="input-fields col s12 d-n" id="hidebyWhen">
+                                    <label for="byWhen" class="left">Fecha de entrega</label>
+                                    <input type="text" class="validate datepicker" id="byWhen" name="byWhen"
+                                        #byWhen="ngModel" [(ngModel)]="quadrangularService.selectedQuadrangular.byWhen"
+                                        (click)="showInputs('assignmentDate')" (input)="showInputs('assignmentDate')">
+                                </div> -->
+
+                                <!-- <div class="input-fields col s12 d-n" id="hidesubject">
+                                    <label for="subject" class="left">Materia</label>
+
+                                    <input class="validate" id="subject" type="text" name="subject" #subject="ngModel"
+                                        [(ngModel)]="quadrangularService.selectedQuadrangular.subject"
+                                        placeholder="Ingrese el nombre de la materia" (input)="showInputs('topic')">
+                                </div>
+
+                                <div class="input-fields col s12 d-n" id="hidetopic">
+                                    <label for="topic" class="left">Tema</label>
+
+                                    <input class="validate" type="text" id="topic" name="topic" #topic="ngModel"
+                                        [(ngModel)]="quadrangularService.selectedQuadrangular.topic" placeholder="Ingrese el tema a tratar"
+                                        (input)="showInputs('description')">
+                                </div>
+
+                                <div class="input-fields col s12 d-n" id="hidedescription">
+                                    <label for="description" class="left">Pasos para lograrlo</label>
+
+                                    <texcuadrangular data-length="120" id="description" name="description" #description="ngModel"
+                                        [(ngModel)]="quadrangularService.selectedQuadrangular.description"
+                                        placeholder="Ingrese los pasos para lograrlo" id="texcuadrangular1"
+                                        class="materialize-texcuadrangular validate"></texcuadrangular>
+                                </div> -->
+
+                                <div class="card-action">
+                                    <div class="input-field col s6">
+                                        <button (click)="resetForm(quadrangularForm)" type="button" style="width: 100%;"
+                                            class="btn left white-text grey darken-3 waves-effect waves-light btn-small">
+                                            Limpiar
+                                        </button>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <button style="width: 100%;"
+                                            class="btn right white-text blue darken-3 waves-effect waves-light btn-small">
+                                            Guardar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 mt-0_5">
+                <div class="card-tabs mt-0_5">
+                    <ul class="tabs tabs-fixed-width">
+                        <li class="tab">
+                            <a class="active" href="#main">En juego</a>
+                        </li>
+                        <!-- <li class="tab">
+                            <a class="" href="#positions">Posiciones</a>
+                        </li> -->
+                        <li class="tab">
+                            <a class="" href="#archived">Pausadas</a>
+                        </li>
+                        <li class="tab">
+                            <a href="#trash" class="">Historia</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-content white-text hoverable">
+                    <div id="main">
+                        <div class="card white">
+                            <div class="card-content white-text">
+                                <span class="card-title black-text">
+                                    <b>Cuadrangulares en juego</b>
+                                </span>
+                                <div class="row">
+                                    <div class="col s12" style="overflow: auto;">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix teal-text">search</i>
+                                            <input type="text" id="search" autocomplete="on" name="search"
+                                                placeholder="Buscar por marcador" (keyup)="getQuadrangularsByScore()">
+                                            <label for="search">Buscar cuadrangular</label>
+                                        </div>
+                                        <table class="black-text responsive-table highlight centered ">
+                                            <thead>
+                                                <th>Equipo A</th>
+                                                <th>Marcador A - B</th>
+                                                <th>Equipo B</th>
+                                                <th>Equipo C</th>
+                                                <th>Marcador C - D</th>
+                                                <th>Equipo D</th>
+                                                <th>Estado</th>
+                                                <th></th>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let quadrangular of quadrangularService.quadrangular">
+                                                    <td>{{ quadrangular.firstTeam }}</td>
+                                                    <td>{{ quadrangular.firstCoupleScore }}</td>
+                                                    <td>{{ quadrangular.secondTeam }}</td>
+                                                    <td>{{ quadrangular.thirdTeam }}</td>
+                                                    <td>{{ quadrangular.secondCoupleScore }}</td>
+                                                    <td>{{ quadrangular.fourthTeam }}</td>
+                                                    <td *ngIf="quadrangular.status == 1">
+                                                        <span class="new badge green">
+                                                            {{ 'En juego' }}
+                                                        </span>
+                                                    </td>
+                                                    <td *ngIf="quadrangular.status == 2">{{ 'Terminado' }}</td>
+                                                    <td>
+                                                        <button type="button" title="Editar"
+                                                            class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
+                                                            style="margin-left: 10px; margin-right: 10px;"
+                                                            (click)="updateQuadrangular(quadrangular)">
+                                                            <i class="material-icons white-text">edit</i>
+                                                        </button>
+                                                        <button type="button" title="Pausar"
+                                                            class="btn-floating btn-large waves-effect waves-light btn-small grey darken-4"
+                                                            style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                            (click)="updateStatusQuadrangular(quadrangular,quadrangularForm)">
+                                                            <i class="material-icons white-text">pause</i>
+                                                        </button>
+                                                        <button type="button" title="Este juego ya es historia"
+                                                            class="btn-floating btn-large waves-effect waves-light btn-small green darken-2"
+                                                            style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                            (click)="softDeleteQuadrangular(quadrangular,quadrangularForm)">
+                                                            <i class="material-icons white-text">done</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+<!--
+                    <div id="positions">
+                        <div class="card white">
+                            <div class="card-content white-text">
+                                <span class="card-title black-text">
+                                    <b>Posiciones</b>
+                                </span>
+                                <div class="row">
+                                    <div class="col s12" style="overflow: auto;">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix teal-text">search</i>
+                                            <input type="text" id="search" autocomplete="on" name="search"
+                                                placeholder="Buscar por equipo" (keyup)="getPosByTeamName()">
+                                            <label for="search">Buscar equipo</label>
+                                        </div>
+                                        <table class="black-text responsive-table highlight centered ">
+                                            <thead>
+                                                <th>Equipo</th>
+                                                <th>Goles</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let quadrangular of quadrangularService.quadrangular">
+                                                    <td>{{ quadrangular.firstTeam }}</td>
+                                                    <td>{{ quadrangular.firstCoupleScore }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <div id="archived">
+                        <div class="card white">
+                            <div class="card-content white-text">
+                                <span class="card-title black-text">
+                                    <b>Cuadrangulares pausadas</b>
+                                </span>
+                                <div class="row">
+                                    <div class="col s12" style="overflow: auto;">
+                                        <!-- <div class="input-field col s12">
+                                            <i class="material-icons prefix teal-text">search</i>
+                                            <input type="text" id="search" autocomplete="on" name="search"
+                                                placeholder="Buscar por marcador" (keyup)="getQuadrangularsByTitle()">
+                                            <label for="search">Buscar cuadrangular</label>
+                                        </div> -->
+                                        <table class="black-text responsive-table highlight centered ">
+                                            <thead>
+                                                <th>Equipo A</th>
+                                                <th>Marcador A - B</th>
+                                                <th>Equipo B</th>
+                                                <th>Equipo C</th>
+                                                <th>Marcador C - D</th>
+                                                <th>Equipo D</th>
+                                                <th></th>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let quadrangularAr of quadrangularService.archived">
+                                                    <td>{{ quadrangularAr.firstTeam }}</td>
+                                                    <td>{{ quadrangularAr.firstCoupleScore }}</td>
+                                                    <td>{{ quadrangularAr.secondTeam }}</td>
+                                                    <td>{{ quadrangularAr.thirdTeam }}</td>
+                                                    <td>{{ quadrangularAr.secondCoupleScore }}</td>
+                                                    <td>{{ quadrangularAr.fourthTeam }}</td>
+                                                    <!-- <td class="font-xs">{{ quadrangularAr.byWhen }}</td>
+                                                    <td class="font-xs">{{ quadrangularAr.assignmentDate }}</td> -->
+                                                    <td *ngIf="quadrangularAr.status == 2">
+                                                        <span class="new badge purple">
+                                                            {{ 'Pausada' }}
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" title="Editar"
+                                                            class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
+                                                            style="margin-left: 10px; margin-right: 10px;"
+                                                            (click)="updateQuadrangular(quadrangularAr)">
+                                                            <i class="material-icons white-text">edit</i>
+                                                        </button>
+                                                        <button type="button" title="Este juego ya es historia"
+                                                            class="btn-floating btn-large waves-effect waves-light btn-small green darken-2"
+                                                            style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                            (click)="softDeleteQuadrangular(quadrangularAr,quadrangularForm)">
+                                                            <i class="material-icons white-text">done</i>
+                                                        </button>
+                                                        <button type="button" title="Reanudar"
+                                                            class="btn-floating btn-large waves-effect waves-light btn-small green accent-4"
+                                                            style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                            (click)="updateStatusQuadrangular(quadrangularAr,quadrangularForm)">
+                                                            <i class="material-icons white-text">trending_up</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="trash">
+                        <div class="card white">
+                            <div class="card-content white-text">
+                                <span class="card-title black-text">
+                                    <b>Cuadrangulares jugados</b>
+                                </span>
+                                <div class="row">
+                                    <div class="col s12" style="overflow: auto;">
+                                        <!-- <div class="input-field col s12">
+                                            <i class="material-icons prefix teal-text">search</i>
+                                            <input type="text" id="search" autocomplete="on" name="search"
+                                                placeholder="Buscar por marcador" (keyup)="getQuadrangularsByTitle()">
+                                            <label for="search">Buscar cuadrangular</label>
+                                        </div> -->
+                                        <table class="black-text responsive-table highlight centered ">
+                                            <thead>
+                                                <th>Equipo A</th>
+                                                <th>Marcador A - B</th>
+                                                <th>Equipo B</th>
+                                                <th>Equipo C</th>
+                                                <th>Marcador C - D</th>
+                                                <th>Equipo D</th>
+                                                <th></th>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let quadrangularDe of quadrangularService.deleted">
+                                                    <td>{{ quadrangularDe.firstTeam }}</td>
+                                                    <td>{{ quadrangularDe.firstCoupleScore }}</td>
+                                                    <td>{{ quadrangularDe.secondTeam }}</td>
+                                                    <td>{{ quadrangularDe.thirdTeam }}</td>
+                                                    <td>{{ quadrangularDe.secondCoupleScore }}</td>
+                                                    <td>{{ quadrangularDe.fourthTeam }}</td>
+                                                    <td *ngIf="quadrangularDe.status == 3">
+                                                        <span class="new badge green">
+                                                            {{ 'Jugada' }}
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" title="Editar"
+                                                            class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
+                                                            style="margin-left: 10px; margin-right: 10px;"
+                                                            (click)="updateQuadrangular(quadrangularDe)">
+                                                            <i class="material-icons white-text">edit</i>
+                                                        </button>
+                                                        <button type="button" title="Reanudar"
+                                                            class="btn-floating btn-large waves-effect waves-light btn-small green accent-4"
+                                                            style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                            (click)="updateStatusQuadrangular(quadrangularDe,quadrangularForm)">
+                                                            <i class="material-icons white-text">trending_up</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<footer class="page-footer blue">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Micuadra</h5>
+                <p class="grey-text text-lighten-4">
+                </p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h6 class="white-text">(GitHub & GitLab) - Oscar Vargas</h6>
+                <ul style="display:flex; align-items: center;">
+                    <li class="center" style="display:inline;">
+                        <a class="grey-text text-lighten-3 center" href="https://github.com/OscarJVD">
+                            <img src="../../../assets/img/github.svg" class="center hoverable white circle" width="55"
+                                alt="Github Oscar Vargas">
+                        </a>
+                    </li>
+                    <li class="center" style="display:inline; margin-left:0.5rem;">
+                        <a class="grey-text text-lighten-3 center" href="https://gitlab.com/ojvargas30">
+                            <img src="../../../assets/img/gitlab.png" class="center hoverable white circle" width="55"
+                                alt="Gitlab Oscar Vargas">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © Oscar Vargas 2021 Todos los derechos reservados.
+        </div>
+    </div>
+</footer>

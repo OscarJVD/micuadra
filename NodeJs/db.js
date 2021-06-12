@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'); // Conexión con mongoose mas rápida
-const URI = "mongodb://localhost:27017/solutasks"; // Url de la bd
+const URI = "mongodb+srv://dovj:hotdompro@cluster0.a3ekd.mongodb.net/micuadra?retryWrites=true&w=majority"; // Url de la bd
 
 mongoose.connect(URI, {
     useNewUrlParser: true,

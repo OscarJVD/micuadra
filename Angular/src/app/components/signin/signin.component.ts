@@ -43,4 +43,8 @@ export class SigninComponent implements OnInit {
 
   }
 
+  back(){
+    location.href = "/travelspg";
+  }
+
 }

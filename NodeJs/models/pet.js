@@ -10,4 +10,3 @@ const TaskSchema = new Schema({
 })
 
 module.exports = mongoose.model('Pet', TaskSchema) // Se exporta como modelo
-

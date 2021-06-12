@@ -1,8 +1,8 @@
+import { FormsModule }   from '@angular/forms'; // Módulo para forms front
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FormsModule }   from '@angular/forms'; // Módulo para forms front
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // Módulo para comunicar back con front
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,8 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { PetsComponent } from './components/pets/pets.component';
 import { TravelsComponent } from './components/travels/travels.component';
 import { TravelspgComponent } from './components/travelspg/travelspg.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { QuadrangularsComponent } from './components/quadrangulars/quadrangulars.component';
 const routes: Routes = [];
 
 @NgModule({
@@ -30,7 +32,9 @@ const routes: Routes = [];
     HomeComponent,
     PetsComponent,
     TravelsComponent,
-    TravelspgComponent
+    TravelspgComponent,
+    FooterComponent,
+    QuadrangularsComponent
   ],
   imports: [
     AppRoutingModule,

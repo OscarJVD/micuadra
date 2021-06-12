@@ -1,300 +1,309 @@
 <app-home></app-home>
-<div class="container">
-    <div class="row">
-        <div class="col s6">
-            <div class="card white" style="margin-top: 8%;">
-                <div class="card-content white-text">
-                    <article class="card-title black-text center">
-                        <b>Nueva Tarea</b>
-                    </article>
-                    <form #taskForm="ngForm" (ngSubmit)="addTask(taskForm)">
-                        <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="taskService.selectedTask._id">
 
-                        <div class="row">
-                            <div class="input-fields col s12">
-                                <label for="title" class="left">Título</label>
-                                <input class="validate" type="text" id="title" name="title" #title="ngModel"
-                                    [(ngModel)]="taskService.selectedTask.title"
-                                    placeholder="Ingrese el título de la tarea">
-                            </div>
+<main>
+    <div class="container">
+        <div class="row j-c-c">
+            <div class="col s7" style="margin-left: 18%;">
+                <div class="card white hoverable" style="margin-top: 8%;">
+                    <div class="card-content white-text">
+                        <article class="card-title black-text center">
+                            <b>Nueva Tarea</b>
+                        </article>
+                        <form #taskForm="ngForm" (ngSubmit)="addTask(taskForm)">
+                            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="taskService.selectedTask._id">
 
-                            <div class="input-fields col s12">
-                                <label for="byWhen" class="left">Fecha de entrega</label>
-                                <input class="validate" type="datetime-local" id="byWhen" name="byWhen"
-                                    #byWhen="ngModel" [(ngModel)]="taskService.selectedTask.byWhen">
-                            </div>
-
-                            <div class="input-fields col s12">
-                                <label for="assignmentDate" class="left">Fecha de asignación</label>
-                            </div>
-                            <div class="d-flex input-fields col s12">
-                                <input class="validate" id="assignmentDate" type="datetime-local" name="assignmentDate"
-                                    #assignmentDate="ngModel" [(ngModel)]="taskService.selectedTask.assignmentDate">
-                                <!-- <label>
-                                <input type="checkbox" name="todayCheck" class="filled-in" (change)="fillAssignmentDate(todayCheck)"/>
-                                <span class="text-sm pl-25">Hoy</span>
-                            </label> -->
-                            </div>
-
-                            <div class="input-fields col s12">
-                                <label for="subject" class="left">Materia</label>
-
-                                <input class="validate" id="subject" type="text" name="subject" #subject="ngModel"
-                                    [(ngModel)]="taskService.selectedTask.subject"
-                                    placeholder="Ingrese el nombre de la materia">
-                            </div>
-
-                            <div class="input-fields col s12">
-                                <label for="topic" class="left">Tema</label>
-
-                                <input class="validate" type="text" id="topic" name="topic" #topic="ngModel"
-                                    [(ngModel)]="taskService.selectedTask.topic" placeholder="Ingrese el tema a tratar">
-                            </div>
-
-                            <div class="input-fields col s12">
-                                <label for="description" class="left">Pasos para lograrlo</label>
-
-                                <textarea data-length="120" id="description" name="description" #description="ngModel"
-                                    [(ngModel)]="taskService.selectedTask.description"
-                                    placeholder="Ingrese los pasos para lograrlo" id="textarea1"
-                                    class="materialize-textarea validate"></textarea>
-                            </div>
-
-                            <div class="card-action">
-                                <div class="input-field col s6">
-                                    <button (click)="resetForm(taskForm)" type="button" style="width: 100%;"
-                                        class="btn left white-text grey darken-3 waves-effect waves-light btn-small">
-                                        Limpiar
-                                    </button>
-                                </div>
-                                <div class="input-field col s6">
-                                    <button style="width: 100%;"
-                                        class="btn right white-text blue darken-3 waves-effect waves-light btn-small">
-                                        Guardar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col s12">
-            <div class="card-tabs">
-                <ul class="tabs tabs-fixed-width">
-                    <li class="tab">
-                        <a class="active" href="#main">Principal</a>
-                    </li>
-                    <li class="tab">
-                        <a class="" href="#archived">Archivadas</a>
-                    </li>
-                    <li class="tab">
-                        <a href="#trash" class="">Papelera</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-content white-text">
-                <div id="main">
-                    <div class="card white">
-                        <div class="card-content white-text">
-                            <span class="card-title black-text">
-                                <b>Lista de Tareas</b>
-                            </span>
                             <div class="row">
-                                <div class="col s12" style="overflow: auto;">
-                                    <div class="input-field col s12">
-                                        <i class="material-icons prefix teal-text">search</i>
-                                        <input type="text" id="search" autocomplete="on" name="search"
-                                            placeholder="Buscar por título" (keyup)="getTasksByTitle()">
-                                        <label for="search">Buscar tarea</label>
+                                <div class="input-fields col s12">
+                                    <label for="title" class="left">Título</label>
+                                    <input class="validate" type="text" id="title" name="title" #title="ngModel"
+                                        [(ngModel)]="taskService.selectedTask.title"
+                                        placeholder="Ingrese el título de la tarea" (input)="showInputs('byWhen')">
+                                </div>
+
+                                <div class="input-fields col s12 d-n" id="hidebyWhen">
+                                    <label for="byWhen" class="left">Fecha de entrega</label>
+                                    <input type="text" class="validate datepicker" id="byWhen" name="byWhen"
+                                        #byWhen="ngModel" [(ngModel)]="taskService.selectedTask.byWhen"
+                                        (click)="showInputs('assignmentDate')" (input)="showInputs('assignmentDate')">
+                                </div>
+
+                                <div class="d-n" id="hideassignmentDate">
+                                    <div class="input-fields col s12">
+                                        <label for="assignmentDate" class="left">Fecha de asignación</label>
                                     </div>
-                                    <table class="black-text responsive-table">
-                                        <thead>
-                                            <th>Título</th>
-                                            <th>Fecha de entrega</th>
-                                            <th>Fecha de asignación</th>
-                                            <th>Estado</th>
-                                            <th>Materia</th>
-                                            <th>Tema</th>
-                                            <th>Pasos para lograrlo</th>
-                                            <th>Operación</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let task of taskService.task">
-                                                <td>{{ task.title }}</td>
-                                                <td class="font-xs">{{ task.byWhen }}</td>
-                                                <td class="font-xs">{{ task.assignmentDate }}</td>
-                                                <td *ngIf="task.status == 1">
-                                                    <span class="new badge green">
-                                                        {{ 'Pendiente' }}
-                                                    </span>
-                                                </td>
-                                                <td *ngIf="task.status == 2">{{ 'Realizada' }}</td>
-                                                <td>{{ task.subject }}</td>
-                                                <td>{{ task.topic }}</td>
-                                                <td>{{ task.description }}</td>
-                                                <td>
-                                                    <button type="button"
-                                                        class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
-                                                        style="margin-left: 10px; margin-right: 10px;"
-                                                        (click)="updateTask(task)">
-                                                        <i class="material-icons white-text">edit</i>
-                                                    </button>
-                                                    <button type="button"
-                                                        class="btn-floating btn-large waves-effect waves-light btn-small grey darken-4"
-                                                        style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="updateStatusTask(task,taskForm)">
-                                                        <i class="material-icons white-text">archive</i>
-                                                    </button>
-                                                    <button type="button"
-                                                        class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
-                                                        style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="softDeleteTask(task,taskForm)">
-                                                        <i class="material-icons white-text">delete</i>
-                                                    </button>
-                                                    <!-- <button type="button"
-                                                        class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
-                                                        style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="deleteTask(task._id)">
-                                                        <i class="material-icons white-text">delete</i>
-                                                    </button> -->
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="d-flex input-fields col s12">
+                                        <input type="text" class="validate datepicker" id="assignmentDate"
+                                            name="assignmentDate" #assignmentDate="ngModel"
+                                            [(ngModel)]="taskService.selectedTask.assignmentDate"
+                                            (click)="showInputs('subject')" (input)="showInputs('subject')">
+                                        <!-- <label>
+                                        <input type="checkbox" name="todayCheck" class="filled-in" (change)="fillAssignmentDate(todayCheck)"/>
+                                        <span class="text-sm pl-25">Hoy</span>
+                                    </label> -->
+                                    </div>
+                                </div>
+
+                                <div class="input-fields col s12 d-n" id="hidesubject">
+                                    <label for="subject" class="left">Materia</label>
+
+                                    <input class="validate" id="subject" type="text" name="subject" #subject="ngModel"
+                                        [(ngModel)]="taskService.selectedTask.subject"
+                                        placeholder="Ingrese el nombre de la materia" (input)="showInputs('topic')">
+                                </div>
+
+                                <div class="input-fields col s12 d-n" id="hidetopic">
+                                    <label for="topic" class="left">Tema</label>
+
+                                    <input class="validate" type="text" id="topic" name="topic" #topic="ngModel"
+                                        [(ngModel)]="taskService.selectedTask.topic" placeholder="Ingrese el tema a tratar"
+                                        (input)="showInputs('description')">
+                                </div>
+
+                                <div class="input-fields col s12 d-n" id="hidedescription">
+                                    <label for="description" class="left">Pasos para lograrlo</label>
+
+                                    <textarea data-length="120" id="description" name="description" #description="ngModel"
+                                        [(ngModel)]="taskService.selectedTask.description"
+                                        placeholder="Ingrese los pasos para lograrlo" id="textarea1"
+                                        class="materialize-textarea validate"></textarea>
+                                </div>
+
+                                <div class="card-action">
+                                    <div class="input-field col s6">
+                                        <button (click)="resetForm(taskForm)" type="button" style="width: 100%;"
+                                            class="btn left white-text grey darken-3 waves-effect waves-light btn-small">
+                                            Limpiar
+                                        </button>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <button style="width: 100%;"
+                                            class="btn right white-text blue darken-3 waves-effect waves-light btn-small">
+                                            Guardar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col s12 mt-0_5">
+                <div class="card-tabs mt-0_5">
+                    <ul class="tabs tabs-fixed-width">
+                        <li class="tab">
+                            <a class="active" href="#main">Principal</a>
+                        </li>
+                        <li class="tab">
+                            <a class="" href="#archived">Archivadas</a>
+                        </li>
+                        <li class="tab">
+                            <a href="#trash" class="">Papelera</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-content white-text hoverable">
+                    <div id="main">
+                        <div class="card white">
+                            <div class="card-content white-text">
+                                <span class="card-title black-text">
+                                    <b>Lista de Tareas</b>
+                                </span>
+                                <div class="row">
+                                    <div class="col s12" style="overflow: auto;">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix teal-text">search</i>
+                                            <input type="text" id="search" autocomplete="on" name="search"
+                                                placeholder="Buscar por título" (keyup)="getTasksByTitle()">
+                                            <label for="search">Buscar tarea</label>
+                                        </div>
+                                        <table class="black-text responsive-table">
+                                            <thead>
+                                                <th>Título</th>
+                                                <th>Fecha de entrega</th>
+                                                <th>Fecha de asignación</th>
+                                                <th>Estado</th>
+                                                <th>Materia</th>
+                                                <th>Tema</th>
+                                                <th>Pasos para lograrlo</th>
+                                                <th>Operación</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let task of taskService.task">
+                                                    <td>{{ task.title }}</td>
+                                                    <td class="font-xs">{{ task.byWhen }}</td>
+                                                    <td class="font-xs">{{ task.assignmentDate }}</td>
+                                                    <td *ngIf="task.status == 1">
+                                                        <span class="new badge green">
+                                                            {{ 'Pendiente' }}
+                                                        </span>
+                                                    </td>
+                                                    <td *ngIf="task.status == 2">{{ 'Realizada' }}</td>
+                                                    <td>{{ task.subject }}</td>
+                                                    <td>{{ task.topic }}</td>
+                                                    <td>{{ task.description }}</td>
+                                                    <td>
+                                                        <button type="button"
+                                                            class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
+                                                            style="margin-left: 10px; margin-right: 10px;"
+                                                            (click)="updateTask(task)">
+                                                            <i class="material-icons white-text">edit</i>
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn-floating btn-large waves-effect waves-light btn-small grey darken-4"
+                                                            style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                            (click)="updateStatusTask(task,taskForm)">
+                                                            <i class="material-icons white-text">archive</i>
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
+                                                            style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                            (click)="softDeleteTask(task,taskForm)">
+                                                            <i class="material-icons white-text">delete</i>
+                                                        </button>
+                                                        <!-- <button type="button"
+                                                            class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
+                                                            style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                            (click)="deleteTask(task._id)">
+                                                            <i class="material-icons white-text">delete</i>
+                                                        </button> -->
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="archived">
-                    <div class="card white">
-                        <div class="card-content white-text">
-                            <span class="card-title black-text">
-                                <b>Lista de Tareas Archivadas</b>
-                            </span>
-                            <div class="row">
-                                <div class="col s12" style="overflow: auto;">
-                                    <!-- <div class="input-field col s12">
-                                        <i class="material-icons prefix teal-text">search</i>
-                                        <input type="text" id="search" autocomplete="on" name="search"
-                                            placeholder="Buscar por título" (keyup)="getTasksByTitle()">
-                                        <label for="search">Buscar tarea</label>
-                                    </div> -->
-                                    <table class="black-text responsive-table">
-                                        <thead>
-                                            <th>Título</th>
-                                            <th>Fecha de entrega</th>
-                                            <th>Fecha de asignación</th>
-                                            <th>Estado</th>
-                                            <th>Materia</th>
-                                            <th>Tema</th>
-                                            <th>Pasos para lograrlo</th>
-                                            <th>Operación</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let taskAr of taskService.archived">
-                                                <td>{{ taskAr.title }}</td>
-                                                <td class="font-xs">{{ taskAr.byWhen }}</td>
-                                                <td class="font-xs">{{ taskAr.assignmentDate }}</td>
-                                                <td *ngIf="taskAr.status == 2">
-                                                    <span class="new badge purple">
-                                                        {{ 'Archivada' }}
-                                                    </span>
-                                                </td>
-                                                <td>{{ taskAr.subject }}</td>
-                                                <td>{{ taskAr.topic }}</td>
-                                                <td>{{ taskAr.description }}</td>
-                                                <td>
-                                                    <button type="button"
-                                                        class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
-                                                        style="margin-left: 10px; margin-right: 10px;"
-                                                        (click)="updateTask(taskAr)">
-                                                        <i class="material-icons white-text">edit</i>
-                                                    </button>
-                                                    <button type="button"
-                                                        class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
-                                                        style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="softDeleteTask(taskAr,taskForm)">
-                                                        <i class="material-icons white-text">delete</i>
-                                                    </button>
-                                                    <button type="button"
-                                                        class="btn-floating btn-large waves-effect waves-light btn-small green accent-4"
-                                                        style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="updateStatusTask(taskDe,taskForm)">
-                                                        <i class="material-icons white-text">trending_up</i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                    <div id="archived">
+                        <div class="card white">
+                            <div class="card-content white-text">
+                                <span class="card-title black-text">
+                                    <b>Lista de Tareas Archivadas</b>
+                                </span>
+                                <div class="row">
+                                    <div class="col s12" style="overflow: auto;">
+                                        <!-- <div class="input-field col s12">
+                                            <i class="material-icons prefix teal-text">search</i>
+                                            <input type="text" id="search" autocomplete="on" name="search"
+                                                placeholder="Buscar por título" (keyup)="getTasksByTitle()">
+                                            <label for="search">Buscar tarea</label>
+                                        </div> -->
+                                        <table class="black-text responsive-table">
+                                            <thead>
+                                                <th>Título</th>
+                                                <th>Fecha de entrega</th>
+                                                <th>Fecha de asignación</th>
+                                                <th>Estado</th>
+                                                <th>Materia</th>
+                                                <th>Tema</th>
+                                                <th>Pasos para lograrlo</th>
+                                                <th>Operación</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let taskAr of taskService.archived">
+                                                    <td>{{ taskAr.title }}</td>
+                                                    <td class="font-xs">{{ taskAr.byWhen }}</td>
+                                                    <td class="font-xs">{{ taskAr.assignmentDate }}</td>
+                                                    <td *ngIf="taskAr.status == 2">
+                                                        <span class="new badge purple">
+                                                            {{ 'Archivada' }}
+                                                        </span>
+                                                    </td>
+                                                    <td>{{ taskAr.subject }}</td>
+                                                    <td>{{ taskAr.topic }}</td>
+                                                    <td>{{ taskAr.description }}</td>
+                                                    <td>
+                                                        <button type="button"
+                                                            class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
+                                                            style="margin-left: 10px; margin-right: 10px;"
+                                                            (click)="updateTask(taskAr)">
+                                                            <i class="material-icons white-text">edit</i>
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
+                                                            style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                            (click)="softDeleteTask(taskAr,taskForm)">
+                                                            <i class="material-icons white-text">delete</i>
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn-floating btn-large waves-effect waves-light btn-small green accent-4"
+                                                            style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                            (click)="updateStatusTask(taskDe,taskForm)">
+                                                            <i class="material-icons white-text">trending_up</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="trash">
-                    <div class="card white">
-                        <div class="card-content white-text">
-                            <span class="card-title black-text">
-                                <b>Lista de Tareas Eliminadas</b>
-                            </span>
-                            <div class="row">
-                                <div class="col s12" style="overflow: auto;">
-                                    <!-- <div class="input-field col s12">
-                                        <i class="material-icons prefix teal-text">search</i>
-                                        <input type="text" id="search" autocomplete="on" name="search"
-                                            placeholder="Buscar por título" (keyup)="getTasksByTitle()">
-                                        <label for="search">Buscar tarea</label>
-                                    </div> -->
-                                    <table class="black-text responsive-table">
-                                        <thead>
-                                            <th>Título</th>
-                                            <th>Fecha de entrega</th>
-                                            <th>Fecha de asignación</th>
-                                            <th>Estado</th>
-                                            <th>Materia</th>
-                                            <th>Tema</th>
-                                            <th>Pasos para lograrlo</th>
-                                            <th>Operación</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let taskDe of taskService.deleted">
-                                                <td>{{ taskDe.title }}</td>
-                                                <td class="font-xs">{{ taskDe.byWhen }}</td>
-                                                <td class="font-xs">{{ taskDe.assignmentDate }}</td>
-                                                <td *ngIf="taskDe.status == 3">
-                                                    <span class="new badge red">
-                                                        {{ 'Eliminada' }}
-                                                    </span>
-                                                </td>
-                                                <td>{{ taskDe.subject }}</td>
-                                                <td>{{ taskDe.topic }}</td>
-                                                <td>{{ taskDe.description }}</td>
-                                                <td>
-                                                    <button type="button"
-                                                        class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
-                                                        style="margin-left: 10px; margin-right: 10px;"
-                                                        (click)="updateTask(taskDe)">
-                                                        <i class="material-icons white-text">edit</i>
-                                                    </button>
-                                                    <button type="button"
-                                                        class="btn-floating btn-large waves-effect waves-light btn-small green accent-4"
-                                                        style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="updateStatusTask(taskDe,taskForm)">
-                                                        <i class="material-icons white-text">trending_up</i>
-                                                    </button>
-                                                    <!-- <button type="button"
-                                                        class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
-                                                        style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
-                                                        (click)="softDeleteTask(taskDe,taskForm)">
-                                                        <i class="material-icons white-text">delete</i>
-                                                    </button> -->
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                    <div id="trash">
+                        <div class="card white">
+                            <div class="card-content white-text">
+                                <span class="card-title black-text">
+                                    <b>Lista de Tareas Eliminadas</b>
+                                </span>
+                                <div class="row">
+                                    <div class="col s12" style="overflow: auto;">
+                                        <!-- <div class="input-field col s12">
+                                            <i class="material-icons prefix teal-text">search</i>
+                                            <input type="text" id="search" autocomplete="on" name="search"
+                                                placeholder="Buscar por título" (keyup)="getTasksByTitle()">
+                                            <label for="search">Buscar tarea</label>
+                                        </div> -->
+                                        <table class="black-text responsive-table">
+                                            <thead>
+                                                <th>Título</th>
+                                                <th>Fecha de entrega</th>
+                                                <th>Fecha de asignación</th>
+                                                <th>Estado</th>
+                                                <th>Materia</th>
+                                                <th>Tema</th>
+                                                <th>Pasos para lograrlo</th>
+                                                <th>Operación</th>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let taskDe of taskService.deleted">
+                                                    <td>{{ taskDe.title }}</td>
+                                                    <td class="font-xs">{{ taskDe.byWhen }}</td>
+                                                    <td class="font-xs">{{ taskDe.assignmentDate }}</td>
+                                                    <td *ngIf="taskDe.status == 3">
+                                                        <span class="new badge red">
+                                                            {{ 'Eliminada' }}
+                                                        </span>
+                                                    </td>
+                                                    <td>{{ taskDe.subject }}</td>
+                                                    <td>{{ taskDe.topic }}</td>
+                                                    <td>{{ taskDe.description }}</td>
+                                                    <td>
+                                                        <button type="button"
+                                                            class="btn-floating btn-large  waves-effect waves-light btn-small orange darken-1"
+                                                            style="margin-left: 10px; margin-right: 10px;"
+                                                            (click)="updateTask(taskDe)">
+                                                            <i class="material-icons white-text">edit</i>
+                                                        </button>
+                                                        <button type="button"
+                                                            class="btn-floating btn-large waves-effect waves-light btn-small green accent-4"
+                                                            style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                            (click)="updateStatusTask(taskDe,taskForm)">
+                                                            <i class="material-icons white-text">trending_up</i>
+                                                        </button>
+                                                        <!-- <button type="button"
+                                                            class="btn-floating btn-large waves-effect waves-light btn-small red darken-3"
+                                                            style="margin-left: 10px; margin-right: 10px; margin-top: 5px;"
+                                                            (click)="softDeleteTask(taskDe,taskForm)">
+                                                            <i class="material-icons white-text">delete</i>
+                                                        </button> -->
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -303,4 +312,41 @@
             </div>
         </div>
     </div>
-</div>
+</main>
+
+
+<!-- footer -->
+<!-- footer -->
+<footer class="page-footer blue">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Micuadra</h5>
+                <p class="grey-text text-lighten-4">
+                </p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h6 class="white-text">(GitHub & GitLab) - Oscar Vargas</h6>
+                <ul style="display:flex; align-items: center;">
+                    <li class="center" style="display:inline;">
+                        <a class="grey-text text-lighten-3 center" href="https://github.com/OscarJVD">
+                            <img src="../../../assets/img/github.svg" class="center hoverable white circle" width="55"
+                                alt="Github Oscar Vargas">
+                        </a>
+                    </li>
+                    <li class="center" style="display:inline; margin-left:0.5rem;">
+                        <a class="grey-text text-lighten-3 center" href="https://gitlab.com/ojvargas30">
+                            <img src="../../../assets/img/gitlab.png" class="center hoverable white circle" width="55"
+                                alt="Gitlab Oscar Vargas">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © Oscar Vargas 2021 Todos los derechos reservados.
+        </div>
+    </div>
+</footer>

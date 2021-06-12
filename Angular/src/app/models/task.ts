@@ -3,14 +3,14 @@ import { Time } from '@angular/common';
 export class Task {
     _id: string;
     title: string;
-    byWhen: Date;
-    assignmentDate: Date;
+    byWhen: string;
+    assignmentDate: string;
     subject: string;
     topic: string;
     description: string;
     status: number;
 
-    constructor(_id = '',title = '',byWhen = new Date(),assignmentDate = new Date(),subject = '',topic = '',description = '',status = 1)
+    constructor(_id = '',title = '',byWhen = '',assignmentDate = '',subject = '',topic = '',description = '',status = 1)
     {
         this._id = _id;
         this.title = title;

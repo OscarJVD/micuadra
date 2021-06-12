@@ -22,11 +22,20 @@ export class TasksComponent implements OnInit {
     this.getArchivedTasks();
     this.getDeletedTasks();
     // this.time1();
+    // this.errorTab();
   }
 
   resetForm(form?: NgForm){
     if(form) form.reset();
   }
+
+  showInputs(eleName){
+    document.getElementById(`hide${eleName}`).classList.remove('d-n')
+  }
+
+  // errorTab(){
+  //   document.getElementById('tabErrorTask').click();
+  // }
 
   getTasks(){
     this.taskService.getTasks().subscribe(res => this.taskService.task = res as Task[])
@@ -51,39 +60,39 @@ export class TasksComponent implements OnInit {
 
   addTask(form: NgForm)
   {
-    if(form.value._id){ // Actualizar tarea si llega solo el id
-      this.taskService.putTask(form.value).subscribe(res => {
-        this.resetForm(form);
+    let byWhen = (<HTMLInputElement>document.getElementById("byWhen")).value;
+    let assignmentDate = (<HTMLInputElement>document.getElementById("assignmentDate")).value;
+
+    console.log(byWhen, assignmentDate);
+    if(byWhen != '' && assignmentDate != ''){
+      form.value.byWhen = byWhen;
+      form.value.assignmentDate = assignmentDate;
+
+      if(form.value._id){ // Actualizar tarea si llega solo el id
         M.toast({html: 'Tarea actualizada satisfactoriamente'})
-        this.getTasks(); // Vuelve y muestra la tabla con la actualización
-    this.getArchivedTasks();
-    this.getDeletedTasks();
+          this.taskService.putTask(form.value).subscribe(res => {
+          this.resetForm(form);
+          this.getTasks(); // Vuelve y muestra la tabla con la actualización
+          this.getArchivedTasks();
+          this.getDeletedTasks();
 
-      })
+        })
+      }else{
+        delete form.value._id;
+        // // return;
+        this.taskService.postTask(form.value).subscribe(res => {
+          console.log(form.value.assignmentDate);
+          console.log(form.value);
+          M.toast({ html: 'Tarea guardada con exito' })
+          this.resetForm(form);
+          this.getTasks(); // Vuelve y muestra la tabla
+          this.getArchivedTasks();
+          this.getDeletedTasks();
+
+        })
+      }
     }else{
-      delete form.value._id;
-    // //   // console.log(form.value.byWhen);
-    //     let byWhenBetter = form.value.byWhen.split("T");
-    // // console.log(byWhenBetter);
-    // byWhenBetter = byWhenBetter[0] + ' ' + byWhenBetter[1].substring(0,8);
-    // byWhenBetter = new Date(byWhenBetter);
-    // // console.log(byWhenBetter);
-
-    // let
-    //     h = byWhenBetter.getHours(),
-    //     m = byWhenBetter.getMinutes();
-
-    //     form.value.byWhen = byWhenBetter.toLocaleDateString("es-ES", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) + ' ' + (h + ':' + ("0" + m).slice(-2) + (h > 12 ? 'PM' : 'AM'));
-    //     console.log(form.value.byWhen);
-      // // return;
-      this.taskService.postTask(form.value).subscribe(res => {
-        this.resetForm(form);
-        M.toast({ html: 'Tarea guardada con exito' })
-        this.getTasks(); // Vuelve y muestra la tabla
-    this.getArchivedTasks();
-    this.getDeletedTasks();
-
-      })
+      M.toast({ html: 'Completa todos los campos' })
     }
   }
 
@@ -157,5 +166,9 @@ export class TasksComponent implements OnInit {
   //     })
   //   }
   // }
+
+  // document.getElementById('tabErrorTask').click();
+  // document.addEventListener('DOMContentLoaded', () => {
+  // })
 
 }

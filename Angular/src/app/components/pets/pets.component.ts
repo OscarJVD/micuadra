@@ -64,21 +64,6 @@ export class PetsComponent implements OnInit {
       })
     }else{
       delete form.value._id;
-    // //   // console.log(form.value.byWhen);
-    //     let byWhenBetter = form.value.byWhen.split("T");
-    // // console.log(byWhenBetter);
-    // byWhenBetter = byWhenBetter[0] + ' ' + byWhenBetter[1].substring(0,8);
-    // byWhenBetter = new Date(byWhenBetter);
-    // // console.log(byWhenBetter);
-
-    // let
-    //     h = byWhenBetter.getHours(),
-    //     m = byWhenBetter.getMinutes();
-
-    //     form.value.byWhen = byWhenBetter.toLocaleDateString("es-ES", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) + ' ' + (h + ':' + ("0" + m).slice(-2) + (h > 12 ? 'PM' : 'AM'));
-    //     console.log(form.value.byWhen);
-
-      // // return;
       this.petService.postPet(form.value).subscribe(res => {
         console.log(res);
         console.log(res.valPet);

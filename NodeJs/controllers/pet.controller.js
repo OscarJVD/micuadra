@@ -44,9 +44,9 @@ petCtrl.addPet = async (req, res) => {
     if (!valPet) {
         await pet.save();
         return res.json({'status': 'Pet Saved', valPet})
-    }else {
+    }else 
         return res.json({'status': 23000, valPet})
-    }
+
 }
 
 // Obtener mascota especifica por ID

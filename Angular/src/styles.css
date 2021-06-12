@@ -106,3 +106,19 @@ span.badge.new:after {
 .section-contact h5 {
   margin-bottom: 30px;
 }
+
+.j-c-c{
+    justify-content: center;
+}
+
+.d-f{
+    display: flex;
+}
+
+.datepicker-day-button{
+    color: black !important;
+}
+
+.cur-poi:hover{
+    cursor: pointer;
+}

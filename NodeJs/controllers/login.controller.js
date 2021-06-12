@@ -11,6 +11,7 @@ loginCtrl.signin = async (req, res) => {
     if (user.password !== password) return res.status(401).send("Contraseña Incorrecta")
 
     const sessionUserId = user._id;
+        // msg = "Logueado correctamente";
     // localStorage.setItem('sessionUserId', user._id)
     const token = jwt.sign({ _id: user._id }, 'secret')
     return res.status(200).send({ token, sessionUserId })

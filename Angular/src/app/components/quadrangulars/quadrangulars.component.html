@@ -19,87 +19,49 @@
                                     <input class="validate" type="text" id="firstTeam" name="firstTeam"
                                         #firstTeam="ngModel"
                                         [(ngModel)]="quadrangularService.selectedQuadrangular.firstTeam"
-                                        placeholder="Nombre Equipo A">
-                                    <!-- (input)="showInputs('byWhen')" -->
+                                        placeholder="Nombre Equipo A" (input)="showInputs('secondTeam')">
                                 </div>
 
-                                <div class="input-fields col s12">
+                                <div class="input-fields col s12 d-n" id="hidesecondTeam">
                                     <label for="secondTeam" class="left">Equipo B</label>
                                     <input class="validate" type="text" id="secondTeam" name="secondTeam"
                                         #secondTeam="ngModel"
                                         [(ngModel)]="quadrangularService.selectedQuadrangular.secondTeam"
-                                        placeholder="Nombre Equipo B">
-                                    <!-- (input)="showInputs('byWhen')" -->
+                                        placeholder="Nombre Equipo B" (input)="showInputs('firstCoupleScore')">
                                 </div>
 
-                                <div class="input-fields col s12">
+                                <div class="input-fields col s12 d-n" id="hidefirstCoupleScore">
                                     <label for="firstCoupleScore" class="left">Marcador A - B</label>
                                     <input class="validate" type="text" id="firstCoupleScore" name="firstCoupleScore"
                                         #firstCoupleScore="ngModel"
                                         [(ngModel)]="quadrangularService.selectedQuadrangular.firstCoupleScore"
-                                        placeholder="Marcador A - B">
-                                    <!-- (input)="showInputs('byWhen')" -->
+                                        placeholder="Marcador A - B" (input)="showInputs('thirdTeam')">
                                 </div>
 
-                                <div class="input-fields col s12">
+                                <div class="input-fields col s12 d-n" id="hidethirdTeam">
                                     <label for="thirdTeam" class="left">Equipo C</label>
                                     <input class="validate" type="text" id="thirdTeam" name="thirdTeam"
                                         #thirdTeam="ngModel"
                                         [(ngModel)]="quadrangularService.selectedQuadrangular.thirdTeam"
-                                        placeholder="Nombre Equipo C">
-                                    <!-- (input)="showInputs('byWhen')" -->
+                                        placeholder="Nombre Equipo C" (input)="showInputs('fourthTeam')">
                                 </div>
 
-                                <div class="input-fields col s12">
+                                <div class="input-fields col s12 d-n" id="hidefourthTeam">
                                     <label for="fourthTeam" class="left">Equipo D</label>
                                     <input class="validate" type="text" id="fourthTeam" name="fourthTeam"
                                         #fourthTeam="ngModel"
                                         [(ngModel)]="quadrangularService.selectedQuadrangular.fourthTeam"
-                                        placeholder="Nombre Equipo D">
-                                    <!-- (input)="showInputs('byWhen')" -->
+                                        placeholder="Nombre Equipo D" (input)="showInputs('secondCoupleScore')">
                                 </div>
 
 
-                                <div class="input-fields col s12">
+                                <div class="input-fields col s12 d-n" id="hidesecondCoupleScore">
                                     <label for="secondCoupleScore" class="left">Marcador C - D</label>
                                     <input class="validate" type="text" id="secondCoupleScore" name="secondCoupleScore"
                                         #secondCoupleScore="ngModel"
                                         [(ngModel)]="quadrangularService.selectedQuadrangular.secondCoupleScore"
                                         placeholder="Marcador C - D">
-                                    <!-- (input)="showInputs('byWhen')" -->
                                 </div>
-
-                                <!-- <div class="input-fields col s12 d-n" id="hidebyWhen">
-                                    <label for="byWhen" class="left">Fecha de entrega</label>
-                                    <input type="text" class="validate datepicker" id="byWhen" name="byWhen"
-                                        #byWhen="ngModel" [(ngModel)]="quadrangularService.selectedQuadrangular.byWhen"
-                                        (click)="showInputs('assignmentDate')" (input)="showInputs('assignmentDate')">
-                                </div> -->
-
-                                <!-- <div class="input-fields col s12 d-n" id="hidesubject">
-                                    <label for="subject" class="left">Materia</label>
-
-                                    <input class="validate" id="subject" type="text" name="subject" #subject="ngModel"
-                                        [(ngModel)]="quadrangularService.selectedQuadrangular.subject"
-                                        placeholder="Ingrese el nombre de la materia" (input)="showInputs('topic')">
-                                </div>
-
-                                <div class="input-fields col s12 d-n" id="hidetopic">
-                                    <label for="topic" class="left">Tema</label>
-
-                                    <input class="validate" type="text" id="topic" name="topic" #topic="ngModel"
-                                        [(ngModel)]="quadrangularService.selectedQuadrangular.topic" placeholder="Ingrese el tema a tratar"
-                                        (input)="showInputs('description')">
-                                </div>
-
-                                <div class="input-fields col s12 d-n" id="hidedescription">
-                                    <label for="description" class="left">Pasos para lograrlo</label>
-
-                                    <texcuadrangular data-length="120" id="description" name="description" #description="ngModel"
-                                        [(ngModel)]="quadrangularService.selectedQuadrangular.description"
-                                        placeholder="Ingrese los pasos para lograrlo" id="texcuadrangular1"
-                                        class="materialize-texcuadrangular validate"></texcuadrangular>
-                                </div> -->
 
                                 <div class="card-action">
                                     <div class="input-field col s6">
@@ -172,7 +134,7 @@
                                                     <td>{{ quadrangular.thirdTeam }}</td>
                                                     <td>{{ quadrangular.secondCoupleScore }}</td>
                                                     <td>{{ quadrangular.fourthTeam }}</td>
-                                                    <td *ngIf="quadrangular.status == 1">
+                                                    <td *ngIf="quadrangular.status == 1" class="badge green">
                                                         <span class="new badge green">
                                                             {{ 'En juego' }}
                                                         </span>
@@ -206,7 +168,7 @@
                             </div>
                         </div>
                     </div>
-<!--
+                    <!--
                     <div id="positions">
                         <div class="card white">
                             <div class="card-content white-text">
@@ -310,7 +272,7 @@
                         <div class="card white">
                             <div class="card-content white-text">
                                 <span class="card-title black-text">
-                                    <b>Cuadrangulares jugados</b>
+                                    <b>Cuadrangulares terminadas</b>
                                 </span>
                                 <div class="row">
                                     <div class="col s12" style="overflow: auto;">

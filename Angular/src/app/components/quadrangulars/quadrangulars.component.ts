@@ -71,10 +71,28 @@ export class QuadrangularsComponent implements OnInit {
         })
       }else{
         delete form.value._id;
-        // // return;
+
+        if(form.value.secondCoupleScore.length !== 5
+          || isNaN(parseInt(form.value.secondCoupleScore[0]))
+          || !/\s/.test(form.value.secondCoupleScore[1])
+          || form.value.secondCoupleScore[2] != "-"
+          || !/\s/.test(form.value.secondCoupleScore[3])
+          || isNaN(parseInt(form.value.secondCoupleScore[4]))
+           ){
+          return M.toast({ html: 'El formato requerido para el marcador es Ej: 0 - 0' })
+        }
+
+        if(form.value.firstCoupleScore.length !== 5
+          || isNaN(parseInt(form.value.firstCoupleScore[0]))
+          || !/\s/.test(form.value.firstCoupleScore[1])
+          || form.value.firstCoupleScore[2] != "-"
+          || !/\s/.test(form.value.firstCoupleScore[3])
+          || isNaN(parseInt(form.value.firstCoupleScore[4]))
+           ){
+          return M.toast({ html: 'El formato requerido para el marcador es Ej: 0 - 0' })
+        }
+
         this.quadrangularService.postQuadrangular(form.value).subscribe(res => {
-          console.log(form.value.assignmentDate);
-          console.log(form.value);
           M.toast({ html: 'Cuadrangular iniciada con exito' })
           this.resetForm(form);
           this.getQuadrangulars(); // Vuelve y muestra la tabla
@@ -121,13 +139,6 @@ export class QuadrangularsComponent implements OnInit {
 
     // console.log(value);
   }
-
-
-
-  // fillAssignmentDate(todayCheck: NgForm)
-  // {
-  //   console.log(todayCheck);
-  // }
 
   updateQuadrangular(quadrangular: Quadrangular){
     window.scrollTo(0, 71);

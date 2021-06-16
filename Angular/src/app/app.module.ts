@@ -1,9 +1,9 @@
 import { FormsModule }   from '@angular/forms'; // Módulo para forms front
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+// import { CommonModule } from '@angular/common';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'; // Módulo para comunicar back con front
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS, HttpHeaders } from '@angular/common/http'; // Módulo para comunicar back con front
 
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
@@ -39,7 +39,7 @@ const routes: Routes = [];
   imports: [
     AppRoutingModule,
     BrowserModule,
-    CommonModule,
+    // CommonModule,
     FormsModule, // Módulo para forms front
     HttpClientModule, // Módulo para comunicar back con front
     RouterModule.forChild(routes),
@@ -47,7 +47,7 @@ const routes: Routes = [];
     RouterModule
   ],
   exports: [RouterModule],
-  providers: [AuthGuard, {
+  providers: [AuthGuard, HttpClient, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true

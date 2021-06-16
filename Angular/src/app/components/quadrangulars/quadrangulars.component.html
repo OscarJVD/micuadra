@@ -89,6 +89,9 @@
                         <li class="tab">
                             <a class="active" href="#main">En juego</a>
                         </li>
+                        <li class="tab">
+                            <a href="#leagues">Ligas</a>
+                        </li>
                         <!-- <li class="tab">
                             <a class="" href="#positions">Posiciones</a>
                         </li> -->
@@ -200,6 +203,40 @@
                             </div>
                         </div>
                     </div> -->
+
+
+
+                    <div id="positions">
+                        <div class="card white">
+                            <div class="card-content white-text">
+                                <span class="card-title black-text">
+                                    <b>Posiciones</b>
+                                </span>
+                                <div class="row">
+                                    <div class="col s12" style="overflow: auto;">
+                                        <div class="input-field col s12">
+                                            <i class="material-icons prefix teal-text">search</i>
+                                            <input type="text" id="search" autocomplete="on" name="search"
+                                                placeholder="Buscar por equipo" (keyup)="getPosByTeamName()">
+                                            <label for="search">Buscar equipo</label>
+                                        </div>
+                                        <table class="black-text responsive-table highlight centered ">
+                                            <thead>
+                                                <th>liga</th>
+                                                <!-- <th>Goles</th>-->
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let quadrangular of quadrangularService.leagues">
+                                                   <!-- <td>{{ quadrangular.firstTeam }}</td>
+                                                    <td>{{ quadrangular.firstCoupleScore }}</td>-->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div id="archived">
                         <div class="card white">

@@ -19,6 +19,7 @@ export class QuadrangularsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getQuadrangulars();
+    this.getLeagues();
     this.getArchivedQuadrangulars();
     this.getDeletedQuadrangulars();
     // this.time1();
@@ -40,6 +41,14 @@ export class QuadrangularsComponent implements OnInit {
   getQuadrangulars(){
     this.quadrangularService.getQuadrangulars().subscribe(res => this.quadrangularService.quadrangular = res as Quadrangular[])
   }
+
+  getLeagues(){
+    this.quadrangularService.getLeagues().subscribe(res => this.quadrangularService.leagues = res as Quadrangular[])
+
+    console.log(this.quadrangularService.leagues)
+    console.log(this.quadrangularService.getLeagues())
+  }
+
 
   getArchivedQuadrangulars(){
     this.quadrangularService.getArchivedQuadrangulars().subscribe(res => this.quadrangularService.archived = res as Quadrangular[])

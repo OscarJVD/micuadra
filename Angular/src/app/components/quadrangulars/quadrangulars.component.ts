@@ -23,6 +23,7 @@ export class QuadrangularsComponent implements OnInit {
     this.getArchivedQuadrangulars();
     this.getDeletedQuadrangulars();
     // this.time1();
+
     // this.errorTab();
   }
 
@@ -43,12 +44,15 @@ export class QuadrangularsComponent implements OnInit {
   }
 
   getLeagues(){
-    this.quadrangularService.getLeagues().subscribe(res => this.quadrangularService.leagues = res as Quadrangular[])
-
-    console.log(this.quadrangularService.leagues)
-    console.log(this.quadrangularService.getLeagues())
+    console.log(`ANTES`);
+    console.log(this.quadrangularService.leagues);
+    console.log(`ANTES`);
+    // this.quadrangularService.getLeagues().then(res => this.quadrangularService.leagues = res)
+    this.quadrangularService.getLeagues().subscribe(res => {console.log([res]);this.quadrangularService.leagues = [res]})
+    // this.quadrangularService.getLeagues().subscribe(res => this.quadrangularService.leagues = res as [])
+    // this.quadrangularService.getLeagues().subscribe(res => console.log(res.count))
+    console.log(this.quadrangularService.leagues);
   }
-
 
   getArchivedQuadrangulars(){
     this.quadrangularService.getArchivedQuadrangulars().subscribe(res => this.quadrangularService.archived = res as Quadrangular[])

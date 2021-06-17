@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-//import {Http,Headers} from '@angular/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http'; // Comunicación F Y B
-//import {Http,Headers} from '@angular/http';
-
+import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http'; // Comunicación F Y B
 import { Quadrangular } from '../models/quadrangular'; // Modelo con la estructura de nuestra tarea
 
 @Injectable({providedIn: 'root'})
@@ -13,17 +8,25 @@ export class QuadrangularService {
 // Aqui agregamos todos los ervicios que se van a consumir desde nuestra API REST
   selectedQuadrangular: Quadrangular; // Esto guarda toda la info de la tarea que seleccionemos
   //headers: any[];
-  leagues: Quadrangular[];
+  //leagues: Quadrangular[];
+  //leagues: [];
+  //leagues: {};
+  // public leagues : any;
+  public leagues : any = [];
+  // public leagues : any = {};
   quadrangular: Quadrangular[];
   archived: Quadrangular[];
   deleted: Quadrangular[];
 
   readonly URL_API = "http://localhost:3000/api/quadrangulars"; // Url de nuestra API REST
-  readonly URL_SOCCER_API = "https://api.football-data.org/v2/competitions/SA/scorers"; // Url de nuestra API REST
+  // readonly URL_SOCCER_API = "https://api.football-data.org/v2/competitions/SA/scorers"; // Url de nuestra API REST
+ // URL_SOCCER_API: string = ""; // Url de nuestra API REST
 
-  constructor(private http: HttpClient) { // Nos ayuda a comunicar back con front
+  constructor(private http: HttpClient, private handler: HttpBackend) { // Nos ayuda a comunicar back con front
+    this.http = new HttpClient(handler)
     this.selectedQuadrangular = new Quadrangular(); // iNICIALIZANDO VARIABLE CON UNA TAREA
    // this.headers = new Headers();
+   //this.URL_SOCCER_API = "https://api.football-data.org/v2/competitions/SA/scorers"
   }
 
   getQuadrangulars() // Hace una petición get para obtener las cuadrangulares de esa url
@@ -31,75 +34,26 @@ export class QuadrangularService {
     return this.http.get(this.URL_API);
   }
 
+  // async
   getLeagues()
   // : Promise<any> // Hace una petición get para obtener las cuadrangulares de esa url
   {
-    /*let headers = new Headers({ 'X-Auth-Token': '55dda2ea064c48909e7c2054959cd00b' });
-    let options = new RequestOptions({ headers: headers });
-*/
+    try{
+      const headersOpt = new HttpHeaders().set(
+        'X-Auth-Token',
+        '55dda2ea064c48909e7c2054959cd00b'
+      )
 
+      headersOpt.delete('Authorization')
 
-/*
-    return this.http.get(this.URL_SOCCER_API, {
-    headers: new HttpHeaders({
-      'X-Auth-Token': '55dda2ea064c48909e7c2054959cd00b',
-      'Content-Type': 'application/json',
-    })};*/
+      // const data = await this.http.get<any>('https://api.football-data.org/v2/competitions', {
+        // const data = this.http.get('https://api.football-data.org/v2/competitions', {
+          return this.http.get('https://api.football-data.org/v2/competitions',{headers: headersOpt})
+      // .toPromise();
 
-    //'Content-Type': 'application/json',
-    /*return this.http.get(this.URL_SOCCER_API, {
-      headers: new HttpHeaders({
-      'X-Auth-Token': '55dda2ea064c48909e7c2054959cd00b',
-      'Content-Type': 'application/json',
-    })})*/
-/*
-    const options = {
-      headers: new HttpHeaders().append('X-Auth-Token', '55dda2ea064c48909e7c2054959cd00b')
-    }
-
-    return this.http.get(this.URL_SOCCER_API, options)
-    //params: new HttpParams().append('key', 'value')
-
-    /*return this.http.get(this.URL_SOCCER_API,
-      new RequestOptions({headers: {'X-Auth-Token': 'YOUR_API_TOKEN'}}));
-*/
-    //, responseType: 'json'
-    //headers: { 'X-Auth-Token': 'YOUR_API_TOKEN' }
-    /*return this.http.get(this.URL_SOCCER_API, { headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'X-Auth-Token': '55dda2ea064c48909e7c2054959cd00b'
-    }), responseType: 'json'});*/
-
-    /*$http.defaults.headers.common['Auth-Token'] = '<INSERT AUTH TOKEN HERE>';
-    return $http.get('http://api.football-data.org/fixtures?callback=JSON_CALLBACK');
-    */
-
-  //   let headers = new HttpHeaders({
-  //     'X-Auth-Token': '55dda2ea064c48909e7c2054959cd00b',
-  //     'Content-Type': 'application/json'
-  //  });
-
-  //  let options = {
-  //     headers: headers
-  //  }
-
-  // return this.http.get(this.URL_SOCCER_API, options);
-  // const options = new HttpHeaders();
-  //   return this.http
-  //     .get<any>('https://api.football-data.org/v2/competitions/CL/matches', {
-  //       headers: {
-  //         'X-Auth-Token':
-  //         '55dda2ea064c48909e7c2054959cd00b'
-  //       }
-  //     })
-  //     .toPromise();
-
-      let header = new HttpHeaders()
-        .set('X-Auth-Token','55dda2ea064c48909e7c2054959cd00b')
-
-      return this.http.get("https://api.football-data.org/v2/competitions/SA/scorers", {
-        headers: header
-      })
+      // console.log(data)
+      // return data
+    }catch(err){console.log(err)}
   }
 
   getArchivedQuadrangulars() // Hace una petición get para obtener las cuadrangulares de esa url

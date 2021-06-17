@@ -90,7 +90,12 @@
                             <a class="active" href="#main">En juego</a>
                         </li>
                         <li class="tab">
-                            <a href="#leagues">Ligas</a>
+                            <a href="#leagues">Juegos de Ligas
+                                <span *ngFor="let football of quadrangularService.leagues">
+                                    <span class="new badge"
+                                        data-badge-caption="custom caption">{{football.count}}</span>
+                                </span>
+                            </a>
                         </li>
                         <!-- <li class="tab">
                             <a class="" href="#positions">Posiciones</a>
@@ -206,29 +211,43 @@
 
 
 
-                    <div id="positions">
+                    <div id="leagues">
                         <div class="card white">
                             <div class="card-content white-text">
                                 <span class="card-title black-text">
-                                    <b>Posiciones</b>
+                                    <b>Juegos de Ligas</b>
+                                    <div style="display:block">
+                                        <span style="font-size: 1.3rem; color:gray;">Para ver mas datos de la api
+                                            football-data inspecciona la consola</span>
+                                    </div>
                                 </span>
                                 <div class="row">
                                     <div class="col s12" style="overflow: auto;">
-                                        <div class="input-field col s12">
-                                            <i class="material-icons prefix teal-text">search</i>
-                                            <input type="text" id="search" autocomplete="on" name="search"
-                                                placeholder="Buscar por equipo" (keyup)="getPosByTeamName()">
-                                            <label for="search">Buscar equipo</label>
-                                        </div>
-                                        <table class="black-text responsive-table highlight centered ">
+                                        <table class="black-text responsive-table highlight">
                                             <thead>
-                                                <th>liga</th>
-                                                <!-- <th>Goles</th>-->
+                                                <th>#</th>
+                                                <th>Equipo</th>
+                                                <th>Código</th>
+                                                <th>Área</th>
+                                                <th>Código país</th>
+                                                <th>Temporada actual</th>
                                             </thead>
-                                            <tbody>
-                                                <tr *ngFor="let quadrangular of quadrangularService.leagues">
-                                                   <!-- <td>{{ quadrangular.firstTeam }}</td>
-                                                    <td>{{ quadrangular.firstCoupleScore }}</td>-->
+                                            <tbody *ngFor="let leagues of quadrangularService.leagues">
+                                                <tr *ngFor="let matches of leagues.competitions">
+                                                    <td>{{ matches.id }}</td>
+                                                    <td>{{ matches.name }}</td>
+                                                    <td>{{ matches.code }}</td>
+                                                    <td>{{ matches.area.name }}</td>
+                                                    <td>{{ matches.area.countryCode }}</td>
+                                                    <td>
+                                                        <div style="display:block">
+                                                            #{{matches.currentSeason.id}}
+                                                        </div>
+                                                        <div style="display:block">
+                                                            Inicio: {{ matches.currentSeason.startDate }}
+                                                        </div>
+                                                        Fin: {{ matches.currentSeason.endDate }}
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
